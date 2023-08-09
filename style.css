@@ -113,10 +113,11 @@ a {
 .main .mainContainer {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  row-gap: 100px;
+  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
   justify-content: space-between;
-  column-gap: 50px;
+  gap: 3%;
+  grid-auto-rows: 550px;
+  row-gap: 100px;
 }
 
 .main .heading h1 {
