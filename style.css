@@ -12,10 +12,12 @@
   padding: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
 .header {
-  background-color: var(--primary-color);
-  display: block;
-  padding: 3% 0 1% 0%;
+  padding: 2% 0 2% 0%;
 }
 
 .header h1 {
@@ -35,25 +37,34 @@
   padding: 3% 8%;
   align-items: center;
   justify-content: center;
-  z-index: 1;
   position: relative;
 }
 
-.sectionContent::before {
-  content: "";
-  position: absolute;
-  top: -200px;
-  left: -50px;
-  background-color: var(--primary-color);
-  width: 200%;
+.background {
+  width: 100%;
   height: 100%;
-  transform: rotate(-5.5deg);
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--primary-color);
   z-index: -1;
 }
 
+.separator {
+  width: 0;
+  height: 0;
+  border-left: 100vw solid transparent;
+  border-bottom: 13.9vw solid white;
+  margin-top: -13.9vw;
+  z-index: 1;
+}
+
 .sectionContent img {
-  width: 550px;
+  width: 600px;
   border-radius: 2px;
+  position: relative;
+
+  z-index: 2;
 }
 
 .sectionContent .aboutMe {
@@ -61,6 +72,9 @@
   padding: 4% 5%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   overflow: hidden;
+  position: relative;
+
+  z-index: 2;
 }
 
 .sectionContent .aboutMe h1 {
@@ -164,4 +178,55 @@
   font-size: 1.1rem;
   letter-spacing: 1px;
   padding: 2% 10% 15% 10%;
+}
+
+/* FOOTER SECTION */
+
+.footer {
+  background-color: var(--primary-color);
+  margin-top: 8%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5% 5% 2% 5%;
+}
+
+.footer img {
+  width: 40px;
+}
+
+.footer .phone,
+.footer .emailAddress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2%;
+  gap: 10px;
+}
+
+.footer h1 {
+  font-size: 2.5rem;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+}
+
+.footer p {
+  margin-top: 2%;
+  font-size: 1.3rem;
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 1px;
+}
+
+.footer .logos {
+  margin-top: 3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20%;
+}
+
+.footer .logos i {
+  font-size: 2rem;
+  cursor: pointer;
 }
