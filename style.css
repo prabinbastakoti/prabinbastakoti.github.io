@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins&family=Roboto&display=swap");
 
 :root {
-  --primary-color: cadetblue;
+  --primary-color: steelblue;
   --background: aliceblue;
 }
 
@@ -50,13 +50,14 @@ a {
   border-bottom: 13.9vw solid var(--background);
   margin-top: -13.9vw;
   z-index: 1;
+  outline: none;
 }
 
 .sectionContent img {
-  width: 600px;
+  max-width: 600px;
   border-radius: 3px;
   position: relative;
-
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   z-index: 2;
 }
 
@@ -66,7 +67,7 @@ a {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   overflow: hidden;
   position: relative;
-
+  min-width: 400px;
   z-index: 2;
 }
 
@@ -75,10 +76,12 @@ a {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   margin-bottom: 3%;
+  letter-spacing: 1px;
 }
 
 .sectionContent .aboutMe p {
   font-size: 1.3rem;
+
   font-family: "Poppins", sans-serif;
   margin-bottom: 4%;
   line-height: 190%;
@@ -105,14 +108,13 @@ a {
   padding: 0 8%;
 }
 .main .mainContainer {
-  width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   justify-content: space-between;
 
   grid-auto-rows: 510px;
-  row-gap: 100px;
   column-gap: 80px;
+  row-gap: 100px;
 }
 
 .main .heading h1 {
@@ -120,14 +122,15 @@ a {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   margin-bottom: 2.5%;
+  letter-spacing: 1px;
 }
 
 .main .projectContainer {
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   background-color: #fff;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   border-top-left-radius: 5%;
   border-top-right-radius: 5%;
 }
@@ -136,8 +139,8 @@ a {
   width: 100%;
   object-fit: cover;
   object-position: center;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .main .projectContainer .projectDetails img {
@@ -162,7 +165,7 @@ a {
 
 .main .projectContainer .projectDetails .topSection h2 {
   font-family: "Poppins", sans-serif;
-  font-weight: 400;
+  font-weight: bold;
   font-size: 1.5rem;
   letter-spacing: 1px;
 }
@@ -192,6 +195,8 @@ a {
   align-items: center;
   justify-content: center;
   padding: 4% 4% 3% 4%;
+  gap: 15px;
+  color: white;
 }
 
 .footer img {
@@ -211,10 +216,10 @@ a {
   font-size: 2.5rem;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
+  letter-spacing: 1px;
 }
 
 .footer p {
-  margin-top: 1%;
   font-size: 1.3rem;
   font-family: "Poppins", sans-serif;
   letter-spacing: 1px;
@@ -231,5 +236,103 @@ a {
 .footer .logos i {
   font-size: 2rem;
   cursor: pointer;
-  color: black;
+  color: white;
+}
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 480px) {
+  .sectionContent {
+    flex-direction: column;
+    gap: 2%;
+  }
+
+  .background {
+    height: 40%;
+  }
+
+  .sectionContent img {
+    width: 350px;
+    margin-top: 10%;
+    border-radius: 5px;
+  }
+
+  .separator {
+    border-bottom: 45vh solid var(--background);
+    position: absolute;
+    top: 15.5%;
+  }
+
+  .sectionContent .aboutMe {
+    padding: 8%;
+    margin: 10% 0 0 0;
+    background-color: var(--background);
+    box-shadow: none;
+  }
+
+  .sectionContent .aboutMe h1 {
+    font-size: 1.8rem;
+  }
+
+  .sectionContent .aboutMe p {
+    font-size: 1rem;
+    margin-bottom: 10%;
+  }
+
+  .sectionContent .aboutMe .socialMediaLinks i {
+    font-size: 1.4rem;
+  }
+
+  .main {
+    margin: 10% 0 20% 0;
+  }
+
+  .main .heading h1 {
+    font-size: 1.8rem;
+    margin-bottom: 5%;
+  }
+
+  .main .mainContainer {
+    grid-template-columns: 1fr;
+    justify-content: center;
+    row-gap: 50px;
+    grid-auto-rows: 450px;
+  }
+
+  .main .projectContainer {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .main .projectContainer .projectDetails .topSection h2 {
+    font-size: 1.3rem;
+  }
+
+  .main .projectContainer .projectDetails i {
+    font-size: 1.4rem;
+  }
+
+  .main .projectContainer .projectDetails img {
+    width: 25px;
+    height: 25px;
+  }
+
+  .main .projectContainer .projectDetails .description {
+    font-size: 1rem;
+    padding-bottom: 2%;
+  }
+
+  .footer h1 {
+    font-size: 1.8rem;
+  }
+  .footer p {
+    font-size: 1rem;
+  }
+
+  .footer img {
+    width: 25px;
+  }
+
+  .footer .logos i {
+    font-size: 1.4rem;
+  }
 }
