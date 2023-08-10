@@ -31,26 +31,17 @@ a {
   align-items: center;
   justify-content: center;
   position: relative;
+  isolation: isolate;
 }
 
 .background {
-  width: 100%;
-  height: 100%;
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   background-color: var(--primary-color);
+  transform: skewY(-5deg);
   z-index: -1;
-}
-
-.separator {
-  width: 0;
-  height: 0;
-  border-left: 100vw solid transparent;
-  border-bottom: 13.9vw solid var(--background);
-  margin-top: -13.9vw;
-  z-index: 1;
-  outline: none;
+  top: -12%;
+  bottom: 14.8%;
 }
 
 .sectionContent img {
@@ -240,26 +231,20 @@ a {
 }
 
 /* MEDIA QUERIES */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
   .sectionContent {
     flex-direction: column;
     gap: 2%;
   }
 
   .background {
-    height: 350px;
+    height: clamp(400px, 45%, 500px);
   }
 
   .sectionContent img {
-    width: 350px;
+    width: clamp(350px, 100%, 450px);
     margin-top: 10%;
     border-radius: 5px;
-  }
-
-  .separator {
-    border-bottom: 45vh solid var(--background);
-    position: absolute;
-    top: 10.4%;
   }
 
   .sectionContent .aboutMe {
@@ -288,6 +273,7 @@ a {
 
   .main .heading h1 {
     font-size: 1.8rem;
+
     margin-bottom: 5%;
   }
 
