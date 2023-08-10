@@ -21,18 +21,6 @@ a {
   text-decoration: none;
 }
 
-.header {
-  padding: 2% 0 2% 0%;
-}
-
-.header h1 {
-  font-family: "Playfair Display", serif;
-  font-size: 4rem;
-  letter-spacing: 3px;
-  text-align: center;
-  text-transform: uppercase;
-}
-
 .topSection {
   overflow: hidden;
 }
@@ -122,7 +110,7 @@ a {
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   justify-content: space-between;
 
-  grid-auto-rows: 550px;
+  grid-auto-rows: 510px;
   row-gap: 100px;
   column-gap: 80px;
 }
@@ -138,13 +126,18 @@ a {
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   background-color: #fff;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-top-left-radius: 5%;
+  border-top-right-radius: 5%;
 }
 
 .main .projectContainer img {
-  height: 300px;
   width: 100%;
   object-fit: cover;
   object-position: center;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 .main .projectContainer .projectDetails img {
@@ -193,12 +186,12 @@ a {
 
 .footer {
   background-color: var(--primary-color);
-  margin-top: 8%;
+  margin-top: 7%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 5% 5% 3% 5%;
+  padding: 4% 4% 3% 4%;
 }
 
 .footer img {
@@ -210,7 +203,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 2%;
+  margin-top: 1%;
   gap: 10px;
 }
 
@@ -221,14 +214,14 @@ a {
 }
 
 .footer p {
-  margin-top: 2%;
+  margin-top: 1%;
   font-size: 1.3rem;
   font-family: "Poppins", sans-serif;
   letter-spacing: 1px;
 }
 
 .footer .logos {
-  margin-top: 3%;
+  margin-top: 2%;
   display: flex;
   justify-content: center;
   align-items: center;
