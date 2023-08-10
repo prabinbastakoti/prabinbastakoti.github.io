@@ -247,7 +247,7 @@ a {
   }
 
   .background {
-    height: 40%;
+    height: 350px;
   }
 
   .sectionContent img {
@@ -259,7 +259,7 @@ a {
   .separator {
     border-bottom: 45vh solid var(--background);
     position: absolute;
-    top: 15.5%;
+    top: 10.4%;
   }
 
   .sectionContent .aboutMe {
