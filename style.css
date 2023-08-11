@@ -183,7 +183,6 @@ a {
 
 .footer {
   background-color: var(--primary-color);
-  margin-top: 7%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -242,11 +241,11 @@ a {
   }
 
   .background {
-    height: clamp(400px, 45%, 500px);
+    height: clamp(400px, 45%, 1400px);
   }
 
   .sectionContent img {
-    width: clamp(350px, 100%, 450px);
+    width: clamp(350px, 100%, 600px);
     margin-top: 10%;
     border-radius: 5px;
   }
@@ -259,20 +258,19 @@ a {
   }
 
   .sectionContent .aboutMe h1 {
-    font-size: 1.8rem;
+    /* font-size: 1.8rem; */
+    font-size: clamp(1.8rem, 2vh, 2.3rem);
   }
 
   .sectionContent .aboutMe p {
-    font-size: 1rem;
+    /* font-size: 1rem; */
+    font-size: clamp(1rem, 1.5vh, 1.3rem);
+
     margin-bottom: 10%;
   }
 
   .sectionContent .aboutMe .socialMediaLinks i {
     font-size: 1.4rem;
-  }
-
-  .main {
-    margin: 10% 0 20% 0;
   }
 
   .main .heading h1 {
@@ -284,7 +282,9 @@ a {
     grid-template-columns: 1fr;
     justify-content: center;
     row-gap: 50px;
-    grid-auto-rows: 450px;
+    /* grid-auto-rows: 450px; */
+    grid-auto-rows: clamp(400px, 65vh, 520px);
+    margin-bottom: 20%;
   }
 
   .main .projectContainer {
@@ -323,12 +323,6 @@ a {
 
   .footer .logos i {
     font-size: 1.4rem;
-  }
-}
-
-@media screen and (min-width: 1063px) {
-  .main .projectContainer:hover {
-    transform: scale(1.08);
   }
 }
 
@@ -386,5 +380,11 @@ a {
 
   .footer .logos i {
     font-size: 1.4rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .main .projectContainer:hover {
+    transform: scale(1.12);
   }
 }
