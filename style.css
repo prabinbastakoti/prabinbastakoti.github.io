@@ -1,6 +1,6 @@
 /* GENERAL */
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 * {
   margin: 0;
@@ -8,7 +8,7 @@
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 html {
@@ -169,6 +169,10 @@ section {
   height: 80vh;
 }
 
+.profile-pic {
+  border-radius: 12rem;
+}
+
 .section__pic-container {
   display: flex;
   height: 400px;
@@ -202,8 +206,8 @@ section {
 #socials-container {
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
-  gap: 1rem;
+  margin-top: 3rem;
+  gap: 1.3rem;
 }
 
 /* ICONS */
