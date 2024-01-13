@@ -2,220 +2,381 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"
-    />
-    <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon" />
+    <title>My Portfolio</title>
     <link rel="stylesheet" href="style.css" />
-    <title>Prabin Bastakoti</title>
+    <link rel="stylesheet" href="mediaqueries.css" />
   </head>
   <body>
-    <section class="topSection">
-      <div class="sectionContent">
-        <div class="background"></div>
-        <img src="assets/profile.jpg" alt="prabin bastakoti" />
-        <div class="aboutMe">
-          <h1>About Me</h1>
-          <p>
-            Hello there! I'm Prabin Bastakoti, a passionate MERN Stack Developer
-            with a creative mindset and an insatiable curiosity for crafting
-            immersive web experiences. With a solid foundation in MongoDB,
-            Express.js, React, and Node.js, I thrive on turning complex ideas
-            into user-friendly applications.
-          </p>
-          <p>
-            Let's turn your vision into a reality. Get in touch, and let's make
-            the web a more dynamic and engaging place!
-          </p>
-          <div class="socialMediaLinks">
-            <a href="https://github.com/prabinbastakoti">
-              <i class="devicon-github-original colored"></i>
-            </a>
-
-            <i class="devicon-linkedin-plain colored"></i>
-          </div>
+    <nav id="desktop-nav">
+      <div class="logo">John Doe</div>
+      <div>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <nav id="hamburger-nav">
+      <div class="logo">John Doe</div>
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="menu-links">
+          <li><a href="#about" onclick="toggleMenu()">About</a></li>
+          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </div>
+      </div>
+    </nav>
+    <section id="profile">
+      <div class="section__pic-container">
+        <img src="./assets/profile-pic.png" alt="John Doe profile picture" />
+      </div>
+      <div class="section__text">
+        <p class="section__text__p1">Hello, I'm</p>
+        <h1 class="title">John Doe</h1>
+        <p class="section__text__p2">Frontend Developer</p>
+        <div class="btn-container">
+          <button
+            class="btn btn-color-2"
+            onclick="window.open('./assets/resume-example.pdf')"
+          >
+            Download CV
+          </button>
+          <button class="btn btn-color-1" onclick="location.href='./#contact'">
+            Contact Info
+          </button>
+        </div>
+        <div id="socials-container">
+          <img
+            src="./assets/linkedin.png"
+            alt="My LinkedIn profile"
+            class="icon"
+            onclick="location.href='https://linkedin.com/'"
+          />
+          <img
+            src="./assets/github.png"
+            alt="My Github profile"
+            class="icon"
+            onclick="location.href='https://github.com/'"
+          />
         </div>
       </div>
     </section>
-    <main class="main">
-      <div class="heading"><h1>My work</h1></div>
-      <div class="mainContainer">
-        <div class="projectContainer">
-          <img src="assets/project1.png" alt="Shikshyalaya" />
-          <div class="projectDetails">
-            <div class="topSection">
-              <h2>ShikshyaLaya</h2>
-              <div class="icons">
-                <a
-                  href="https://github.com/prabinbastakoti/Learning-Management-System"
-                  target="_blank"
-                >
-                  <i class="devicon-github-original colored"></i>
-                </a>
-                <a
-                  href="https://shikshyalaya.pythonanywhere.com/"
-                  target="_blank"
-                >
-                  <img src="assets/open-in-new.svg" />
-                </a>
-              </div>
+    <section id="about">
+      <p class="section__text__p1">Get To Know More</p>
+      <h1 class="title">About Me</h1>
+      <div class="section-container">
+        <div class="section__pic-container">
+          <img
+            src="./assets/about-pic.png"
+            alt="Profile picture"
+            class="about-pic"
+          />
+        </div>
+        <div class="about-details-container">
+          <div class="about-containers">
+            <div class="details-container">
+              <img
+                src="./assets/experience.png"
+                alt="Experience icon"
+                class="icon"
+              />
+              <h3>Experience</h3>
+              <p>2+ years <br />Frontend Development</p>
             </div>
-            <div class="description">
-              ShikshyaLaya is an online platform trying to democratize access to
-              data & information every student needs.
+            <div class="details-container">
+              <img
+                src="./assets/education.png"
+                alt="Education icon"
+                class="icon"
+              />
+              <h3>Education</h3>
+              <p>B.Sc. Bachelors Degree<br />M.Sc. Masters Degree</p>
             </div>
           </div>
-        </div>
-        <div class="projectContainer">
-          <img src="assets/project2.png" alt="Spice&Sizzle" />
-          <div class="projectDetails">
-            <div class="topSection">
-              <h2>Sizzle & Sizzle</h2>
-              <div class="icons">
-                <a
-                  href="https://github.com/prabinbastakoti/Spice-and-Sizzle"
-                  target="_blank"
-                >
-                  <i class="devicon-github-original colored"></i>
-                </a>
-                <a
-                  href="https://prabinbastakoti.github.io/Spice-and-Sizzle/"
-                  target="_blank"
-                >
-                  <img src="assets/open-in-new.svg" />
-                </a>
-              </div>
-            </div>
-            <div class="description">
-              This is a restaurant app written with the help of ES6 modules and
-              Webpack Module Bundler.
-            </div>
-          </div>
-        </div>
-        <div class="projectContainer">
-          <img src="assets/project3.png" alt="Weather Application" />
-          <div class="projectDetails">
-            <div class="topSection">
-              <h2>Weather Application</h2>
-              <div class="icons">
-                <a
-                  href="https://github.com/prabinbastakoti/weather"
-                  target="_blank"
-                >
-                  <i class="devicon-github-original colored"></i>
-                </a>
-                <a
-                  href="https://prabinbastakoti.github.io/weather/"
-                  target="_blank"
-                >
-                  <img src="assets/open-in-new.svg" />
-                </a>
-              </div>
-            </div>
-            <div class="description">
-              This app shows the current weather of a city. It uses
-              TheWeatherAPI to fetch the weather data.
-            </div>
-          </div>
-        </div>
-        <div class="projectContainer">
-          <img src="assets/project4.png" alt="library" />
-          <div class="projectDetails">
-            <div class="topSection">
-              <h2>Library</h2>
-              <div class="icons">
-                <a
-                  href="https://github.com/prabinbastakoti/library"
-                  target="_blank"
-                >
-                  <i class="devicon-github-original colored"></i>
-                </a>
-                <a
-                  href="https://prabinbastakoti.github.io/library/"
-                  target="_blank"
-                >
-                  <img src="assets/open-in-new.svg" />
-                </a>
-              </div>
-            </div>
-            <div class="description">
-              Create a library where books are stored.
-            </div>
-          </div>
-        </div>
-        <div class="projectContainer">
-          <img src="assets/project5.png" alt="Calculator" />
-          <div class="projectDetails">
-            <div class="topSection">
-              <h2>Calculator</h2>
-              <div class="icons">
-                <a
-                  href="https://github.com/prabinbastakoti/Calculator"
-                  target="_blank"
-                >
-                  <i class="devicon-github-original colored"></i>
-                </a>
-                <a
-                  href="https://prabinbastakoti.github.io/Calculator/"
-                  target="_blank"
-                >
-                  <img src="assets/open-in-new.svg" />
-                </a>
-              </div>
-            </div>
-            <div class="description">
-              This is a Calculator that looks like the one available in IOS.
-            </div>
-          </div>
-        </div>
-        <div class="projectContainer">
-          <img src="assets/project6.png" alt="Tictactoe" />
-          <div class="projectDetails">
-            <div class="topSection">
-              <h2>Tic Tac Toe</h2>
-              <div class="icons">
-                <a
-                  href="https://github.com/prabinbastakoti/TicTacToe"
-                  target="_blank"
-                >
-                  <i class="devicon-github-original colored"></i>
-                </a>
-                <a
-                  href="https://prabinbastakoti.github.io/TicTacToe/"
-                  target="_blank"
-                >
-                  <img src="assets/open-in-new.svg" />
-                </a>
-              </div>
-            </div>
-            <div class="description">A classic Tic Tac Toe.</div>
+          <div class="text-container">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic quis
+              reprehenderit et laborum, rem, dolore eum quod voluptate
+              exercitationem nobis, nihil esse debitis maxime facere minus sint
+              delectus velit in eos quo officiis explicabo deleniti dignissimos.
+              Eligendi illum libero dolorum cum laboriosam corrupti quidem,
+              reiciendis ea magnam? Nulla, impedit fuga!
+            </p>
           </div>
         </div>
       </div>
-    </main>
-    <footer class="footer">
-      <h1>Contact Me</h1>
-      <p>
-        Please get in touch if you think our work could be mutually beneficial!
-      </p>
-      <p>Bharatpur, Nepal</p>
-      <div class="phone">
-        <img src="assets/phone.png" alt="" />
-        <p>9809224210</p>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#experience'"
+      />
+    </section>
+    <section id="experience">
+      <p class="section__text__p1">Explore My</p>
+      <h1 class="title">Experience</h1>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <div class="details-container">
+            <h2 class="experience-sub-title">Frontend Development</h2>
+            <div class="article-container">
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>HTML</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>CSS</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>SASS</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>JavaScript</h3>
+                  <p>Basic</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>TypeScript</h3>
+                  <p>Basic</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Material UI</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="details-container">
+            <h2 class="experience-sub-title">Frontend Development</h2>
+            <div class="article-container">
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>PostgreSQL</h3>
+                  <p>Basic</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Node JS</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Express JS</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Git</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="emailAddress">
-        <img src="assets/mail.png" alt="" />
-        <p>prabinbastakoti1@gmail.com</p>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#projects'"
+      />
+    </section>
+    <section id="projects">
+      <p class="section__text__p1">Browse My Recent</p>
+      <h1 class="title">Projects</h1>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/project-1.png"
+                alt="Project 1"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Project One</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+                Live Demo
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/project-2.png"
+                alt="Project 2"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Project Two</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+                Live Demo
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/project-3.png"
+                alt="Project 3"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Project Three</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+                Github
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+                Live Demo
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="logos">
-        <a href="https://github.com/prabinbastakoti">
-          <i class="devicon-github-original colored"></i>
-        </a>
-
-        <i class="devicon-linkedin-plain colored"></i>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#contact'"
+      />
+    </section>
+    <section id="contact">
+      <p class="section__text__p1">Get in Touch</p>
+      <h1 class="title">Contact Me</h1>
+      <div class="contact-info-upper-container">
+        <div class="contact-info-container">
+          <img
+            src="./assets/email.png"
+            alt="Email icon"
+            class="icon contact-icon email-icon"
+          />
+          <p><a href="mailto:examplemail@gmail.com">Example@gmail.com</a></p>
+        </div>
+        <div class="contact-info-container">
+          <img
+            src="./assets/linkedin.png"
+            alt="LinkedIn icon"
+            class="icon contact-icon"
+          />
+          <p><a href="https://www.linkedin.com">LinkedIn</a></p>
+        </div>
       </div>
+    </section>
+    <footer>
+      <nav>
+        <div class="nav-links-container">
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+      <p>Copyright &#169; 2023 John Doe. All Rights Reserved.</p>
     </footer>
+    <script src="script.js"></script>
   </body>
 </html>
