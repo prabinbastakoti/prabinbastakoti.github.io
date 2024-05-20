@@ -370,8 +370,9 @@ article .icon {
 
 .project-img {
   border-radius: 2rem;
-  width: 90%;
-  height: 90%;
+  width: 600px;
+  height: 600px;
+  object-fit: contain;
 }
 
 .project-title {
@@ -433,4 +434,12 @@ footer {
 
 footer p {
   text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .project-img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+  }
 }
