@@ -29,18 +29,38 @@ section {
   overflow: hidden;
 }
 
-@mixin mobile {
-  @media (max-width: 738px) {
-    @content;
+@media (max-width: 1366px) {
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: block;
+
+    .mobile__container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+
+      h1 {
+        padding: 0% 10%;
+        text-align: center;
+      }
+    }
   }
 }
-@mixin tablet {
-  @media (max-width: 1024px) {
-    @content;
+
+@media (min-width: 1365px) {
+  .desktop {
+    display: block;
   }
-}
-@mixin desktop {
-  @media (max-width: 1366px) {
-    @content;
+  .mobile {
+    display: none;
   }
 }

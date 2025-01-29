@@ -9,26 +9,34 @@ import Services from './components/services/Services';
 
 const App = () => {
   return (
-    <div>
-      <Cursor />
-      <section id='Homepage'>
-        <Navbar />
-        <Hero />
-      </section>
-      <section id='Services'>
-        <Parallax type='services' />
-      </section>
-      <section>
-        <Services />
-      </section>
-      <section id='Portfolio'>
-        <Parallax type='portfolio' />
-      </section>
-      <Portfolio />
-      <section id='Contact'>
-        <Contact />
-      </section>
-    </div>
+    <>
+      <div className='desktop'>
+        <Cursor />
+        <section id='Homepage'>
+          <Navbar />
+          <Hero />
+        </section>
+        <section id='Services'>
+          <Parallax type='services' />
+        </section>
+        <section>
+          <Services />
+        </section>
+        <section id='Portfolio'>
+          <Parallax type='portfolio' />
+        </section>
+        <Portfolio />
+        <section id='Contact'>
+          <Contact />
+        </section>
+      </div>
+      <div className='mobile'>
+        <div className='mobile__container'>
+          <img src='/mobile.png' alt='' />
+          <h1>Please access this site on a desktop or a laptop</h1>
+        </div>
+      </div>
+    </>
   );
 };
 
