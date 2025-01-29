@@ -12,7 +12,7 @@ const items = [
   },
   {
     id: 2,
-    title: 'Shikshyalaya',
+    title: 'ShikshyaLaya',
     img: '/shikshyalaya.png',
     desc: 'ShikshyaLaya is an online Platform trying to Democratize access to data & information every student needs.',
     link: 'https://github.com/prabinbastakoti/Learning-Management-System',
