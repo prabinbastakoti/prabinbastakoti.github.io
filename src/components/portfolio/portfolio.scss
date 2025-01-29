@@ -27,7 +27,7 @@
     overflow: hidden;
 
     .wrapper {
-      max-width: 1366px;
+      max-width: 1260px;
       height: 100%;
       margin: auto;
       display: flex;
@@ -38,11 +38,13 @@
       .imageContainer {
         flex: 1;
         height: 50%;
+        overflow: hidden;
 
         img {
-          width: 100%;
+          width: 90%;
           height: 100%;
           object-fit: cover;
+          border-radius: 8px 8px;
         }
       }
 
