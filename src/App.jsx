@@ -33,7 +33,7 @@ const App = () => {
       <div className='mobile'>
         <div className='mobile__container'>
           <img src='/mobile.png' alt='' />
-          <h1>Please access this site on a desktop or a laptop</h1>
+          <h1>Please access this site on a PC</h1>
         </div>
       </div>
     </>
