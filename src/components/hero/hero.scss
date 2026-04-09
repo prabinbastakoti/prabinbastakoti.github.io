@@ -262,10 +262,15 @@
   }
 
   .hero__badge {
-    font-size: 0.7rem;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
+    font-size: 0.68rem;
+    left: 0.62rem;
+    letter-spacing: 0.04em;
+    line-height: 1.25;
+    padding: 0.42rem 0.62rem;
+    right: 0.62rem;
+    text-align: center;
+    transform: none;
+    white-space: normal;
   }
 
   .hero__floating {
