@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import {
   motion,
+  useReducedMotion,
   useMotionTemplate,
   useMotionValue,
   useScroll,
@@ -18,6 +19,7 @@ const metrics = [
 const Hero = () => {
   const heroRef = useRef(null);
   const cardRef = useRef(null);
+  const prefersReducedMotion = useReducedMotion();
   const { scrollY } = useScroll();
 
   const tiltX = useMotionValue(0);
@@ -37,19 +39,38 @@ const Hero = () => {
   const haloY = useTransform(scrollY, [0, 900], [0, -36]);
   const imageY = useTransform(scrollY, [0, 900], [0, -20]);
 
+  const updateCardTilt = (clientX, clientY, isMobile = false) => {
+    if (!cardRef.current) {
+      return;
+    }
+
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (clientX - rect.left) / rect.width;
+    const y = (clientY - rect.top) / rect.height;
+    const rotateY = isMobile ? 14 : 11;
+    const rotateX = isMobile ? 12 : 10;
+
+    tiltY.set((x - 0.5) * rotateY);
+    tiltX.set((0.5 - y) * rotateX);
+    glowX.set(x * 100);
+    glowY.set(y * 100);
+  };
+
   const handleImageMove = (event) => {
     if (!cardRef.current || window.innerWidth < 900) {
       return;
     }
 
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width;
-    const y = (event.clientY - rect.top) / rect.height;
+    updateCardTilt(event.clientX, event.clientY);
+  };
 
-    tiltY.set((x - 0.5) * 11);
-    tiltX.set((0.5 - y) * 10);
-    glowX.set(x * 100);
-    glowY.set(y * 100);
+  const handleImageTouchMove = (event) => {
+    if (!cardRef.current || event.touches.length === 0) {
+      return;
+    }
+
+    const touch = event.touches[0];
+    updateCardTilt(touch.clientX, touch.clientY, true);
   };
 
   const resetImageTilt = () => {
@@ -119,8 +140,30 @@ const Hero = () => {
             rotateX: smoothTiltX,
             rotateY: smoothTiltY,
           }}
+          animate={
+            prefersReducedMotion
+              ? undefined
+              : {
+                  x: [0, 3, 0, -3, 0],
+                  y: [0, -5, 0, 4, 0],
+                }
+          }
+          transition={
+            prefersReducedMotion
+              ? undefined
+              : {
+                  duration: 7.2,
+                  ease: 'easeInOut',
+                  repeat: Infinity,
+                  repeatType: 'loop',
+                }
+          }
           onMouseMove={handleImageMove}
           onMouseLeave={resetImageTilt}
+          onTouchStart={handleImageTouchMove}
+          onTouchMove={handleImageTouchMove}
+          onTouchEnd={resetImageTilt}
+          onTouchCancel={resetImageTilt}
         >
           <div className='hero__imageBack'></div>
           <motion.div className='hero__shine' style={{ background: dynamicShine }} />

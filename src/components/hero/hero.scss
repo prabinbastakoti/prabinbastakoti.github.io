@@ -242,7 +242,6 @@
 
   .hero__imageWrap {
     min-height: 27rem;
-    transform: none !important;
 
     img {
       max-height: 25rem;
@@ -272,16 +271,14 @@
   }
 
   .hero__badge {
-    bottom: 0.86rem;
-    font-size: 0.78rem;
-    left: 0.62rem;
-    letter-spacing: 0.04em;
-    line-height: 1.25;
-    padding: 0.56rem 0.7rem;
-    right: 0.62rem;
+    bottom: 0.7rem;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: calc(100% - 1.24rem);
+    right: 0;
     text-align: center;
-    transform: none;
-    white-space: normal;
+    width: max-content;
   }
 
   .hero__floating {
