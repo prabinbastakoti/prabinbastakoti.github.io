@@ -18,10 +18,7 @@ const metrics = [
 const Hero = () => {
   const heroRef = useRef(null);
   const cardRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ['start end', 'end start'],
-  });
+  const { scrollY } = useScroll();
 
   const tiltX = useMotionValue(0);
   const tiltY = useMotionValue(0);
@@ -34,11 +31,11 @@ const Hero = () => {
   const smoothGlowY = useSpring(glowY, { stiffness: 120, damping: 20 });
   const dynamicShine = useMotionTemplate`radial-gradient(circle at ${smoothGlowX}% ${smoothGlowY}%, rgba(255, 255, 255, 0.54) 0%, rgba(255, 255, 255, 0) 24%)`;
 
-  const contentY = useTransform(scrollYProgress, [0, 1], [38, -42]);
-  const portraitY = useTransform(scrollYProgress, [0, 1], [70, -55]);
-  const statusY = useTransform(scrollYProgress, [0, 1], [22, -20]);
-  const haloY = useTransform(scrollYProgress, [0, 1], [16, -36]);
-  const imageY = useTransform(scrollYProgress, [0, 1], [22, -20]);
+  const contentY = useTransform(scrollY, [0, 900], [0, -42]);
+  const portraitY = useTransform(scrollY, [0, 900], [0, -55]);
+  const statusY = useTransform(scrollY, [0, 900], [0, -20]);
+  const haloY = useTransform(scrollY, [0, 900], [0, -36]);
+  const imageY = useTransform(scrollY, [0, 900], [0, -20]);
 
   const handleImageMove = (event) => {
     if (!cardRef.current || window.innerWidth < 900) {

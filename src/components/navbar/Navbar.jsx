@@ -1,10 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  AnimatePresence,
-  motion,
-  useMotionValueEvent,
-  useScroll,
-} from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import './navbar.scss';
 
 const links = [
@@ -38,8 +33,7 @@ const menuItemVariants = {
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isElevated, setIsElevated] = useState(false);
-  const { scrollY } = useScroll();
+  const [activeHref, setActiveHref] = useState('#home');
 
   useEffect(() => {
     if (!isOpen) {
@@ -69,17 +63,30 @@ const Navbar = () => {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, []);
 
-  useMotionValueEvent(scrollY, 'change', (latest) => {
-    setIsElevated((previous) => {
-      if (!previous && latest > 64) {
-        return true;
-      }
-      if (previous && latest < 24) {
-        return false;
-      }
-      return previous;
-    });
-  });
+  useEffect(() => {
+    const updateActiveSection = () => {
+      let current = '#home';
+      const probe = window.scrollY + window.innerHeight * 0.35;
+
+      links.forEach((link) => {
+        const section = document.querySelector(link.href);
+        if (section && probe >= section.offsetTop) {
+          current = link.href;
+        }
+      });
+
+      setActiveHref(current);
+    };
+
+    updateActiveSection();
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    window.addEventListener('resize', updateActiveSection);
+
+    return () => {
+      window.removeEventListener('scroll', updateActiveSection);
+      window.removeEventListener('resize', updateActiveSection);
+    };
+  }, []);
 
   const closeMenu = () => {
     setIsOpen(false);
@@ -87,32 +94,38 @@ const Navbar = () => {
 
   return (
     <motion.header
-      className={`navbar ${isElevated ? 'isElevated' : ''}`}
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
+      className='navbar'
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
     >
-      <div className='container navbar__inner'>
-        <nav className='navbar__desktop' aria-label='Primary'>
+      <nav className='navbar__desktopRail' aria-label='Primary'>
+        <p className='navbar__desktopHeading'>Navigate</p>
+        <div className='navbar__desktopTrack'>
           {links.map((link) => (
-            <a key={link.href} href={link.href}>
-              {link.label}
+            <a
+              key={link.href}
+              href={link.href}
+              className={`navbar__desktopLink ${
+                activeHref === link.href ? 'isActive' : ''
+              }`}
+            >
+              <span className='navbar__desktopDot' aria-hidden='true'></span>
+              <span className='navbar__desktopText'>{link.label}</span>
             </a>
           ))}
-        </nav>
-
-        <div className='navbar__actions'>
-          <button
-            className='navbar__menuButton'
-            aria-label='Toggle menu'
-            aria-expanded={isOpen}
-            onClick={() => setIsOpen((prev) => !prev)}
-          >
-            <span className={isOpen ? 'line line--one open' : 'line line--one'}></span>
-            <span className={isOpen ? 'line line--two open' : 'line line--two'}></span>
-          </button>
         </div>
-      </div>
+      </nav>
+
+      <button
+        className='navbar__menuButton'
+        aria-label='Toggle menu'
+        aria-expanded={isOpen}
+        onClick={() => setIsOpen((prev) => !prev)}
+      >
+        <span className={isOpen ? 'line line--one open' : 'line line--one'}></span>
+        <span className={isOpen ? 'line line--two open' : 'line line--two'}></span>
+      </button>
 
       <AnimatePresence>
         {isOpen && (
@@ -152,7 +165,7 @@ const Navbar = () => {
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   <span className='navbar__mobileLabel'>{link.label}</span>
-                  <span className='navbar__mobileArrow'>→</span>
+                  <span className='navbar__mobileArrow'>{'->'}</span>
                 </motion.a>
               ))}
             </motion.div>
