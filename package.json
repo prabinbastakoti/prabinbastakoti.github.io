@@ -10,7 +10,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "npm run build && wrangler dev",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages -d dist -b gh-pages --no-history",
     "deploy:cf": "npm run build && wrangler deploy"
   },
   "dependencies": {
