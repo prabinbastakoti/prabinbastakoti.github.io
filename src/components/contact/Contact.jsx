@@ -1,34 +1,34 @@
-import { useRef, useState } from 'react';
-import { motion } from 'framer-motion';
-import emailjs from '@emailjs/browser';
-import './contact.scss';
+import { useRef, useState } from "react";
+import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
+import "./contact.scss";
 
 const Contact = () => {
   const formRef = useRef();
-  const [state, setState] = useState({ type: '', message: '', sending: false });
+  const [state, setState] = useState({ type: "", message: "", sending: false });
 
   const sendEmail = async (event) => {
     event.preventDefault();
-    setState({ type: '', message: '', sending: true });
+    setState({ type: "", message: "", sending: true });
 
     try {
       await emailjs.sendForm(
-        'service_xj51msg',
-        'template_hzeh0x1',
+        "service_g0mueah",
+        "template_hzeh0x1",
         formRef.current,
-        'Mw9UkDsQIzGw09274'
+        "Mw9UkDsQIzGw09274",
       );
 
       setState({
-        type: 'success',
-        message: 'Message received. I will get back to you shortly.',
+        type: "success",
+        message: "Message received. I will get back to you shortly.",
         sending: false,
       });
       formRef.current.reset();
     } catch (error) {
       setState({
-        type: 'error',
-        message: 'Something went wrong while sending. Please try again.',
+        type: "error",
+        message: "Something went wrong while sending. Please try again.",
         sending: false,
       });
     }
@@ -44,7 +44,9 @@ const Contact = () => {
         transition={{ duration: 0.45 }}
       >
         <p className='eyebrow'>Contact</p>
-        <h2 className='sectionTitle'>Let&apos;s craft your next digital product.</h2>
+        <h2 className='sectionTitle'>
+          Let&apos;s craft your next digital product.
+        </h2>
         <p>
           Share your goals, timeline, and scope. I usually respond within one
           business day with a clear next step.
@@ -76,10 +78,22 @@ const Contact = () => {
         transition={{ duration: 0.45, delay: 0.12 }}
       >
         <label htmlFor='name'>Name</label>
-        <input id='name' type='text' required name='name' placeholder='Your name' />
+        <input
+          id='name'
+          type='text'
+          required
+          name='name'
+          placeholder='Your name'
+        />
 
         <label htmlFor='email'>Email</label>
-        <input id='email' type='email' required name='email' placeholder='Your email' />
+        <input
+          id='email'
+          type='email'
+          required
+          name='email'
+          placeholder='Your email'
+        />
 
         <label htmlFor='message'>Message</label>
         <textarea
@@ -90,8 +104,12 @@ const Contact = () => {
           placeholder='Tell me a little about your project, expected timeline, and goals'
         />
 
-        <button className='btn btn--primary' type='submit' disabled={state.sending}>
-          {state.sending ? 'Sending...' : 'Send Message'}
+        <button
+          className='btn btn--primary'
+          type='submit'
+          disabled={state.sending}
+        >
+          {state.sending ? "Sending..." : "Send Message"}
         </button>
 
         {state.message && (
