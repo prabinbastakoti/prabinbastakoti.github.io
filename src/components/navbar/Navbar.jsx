@@ -23,7 +23,15 @@ const Navbar = () => {
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
-    setIsElevated(latest > 40);
+    setIsElevated((previous) => {
+      if (!previous && latest > 64) {
+        return true;
+      }
+      if (previous && latest < 24) {
+        return false;
+      }
+      return previous;
+    });
   });
 
   const closeMenu = () => {
@@ -38,10 +46,6 @@ const Navbar = () => {
       transition={{ duration: 0.5, ease: 'easeOut' }}
     >
       <div className='container navbar__inner'>
-        <a href='#home' className='navbar__brand'>
-          <strong>Prabin Bastakoti</strong>
-        </a>
-
         <nav className='navbar__desktop' aria-label='Primary'>
           {links.map((link) => (
             <a key={link.href} href={link.href}>
@@ -51,14 +55,6 @@ const Navbar = () => {
         </nav>
 
         <div className='navbar__actions'>
-          <a
-            className='btn btn--ghost navbar__resume'
-            href='/prabinbastakoti.pdf'
-            target='_blank'
-            rel='noreferrer'
-          >
-            Resume
-          </a>
           <button
             className='navbar__menuButton'
             aria-label='Toggle menu'

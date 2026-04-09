@@ -73,6 +73,7 @@
 }
 
 .hero__visual {
+  perspective: 1200px;
   position: relative;
 }
 
@@ -87,12 +88,40 @@
 }
 
 .hero__imageWrap {
+  background: linear-gradient(160deg, rgba(253, 253, 250, 0.94), rgba(240, 245, 250, 0.74));
+  border: 1px solid rgba(17, 18, 23, 0.14);
   border-radius: var(--radius-xl);
+  box-shadow: 0 26px 52px rgba(11, 20, 34, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.9);
   min-height: 35rem;
   overflow: hidden;
   padding: 1.5rem;
   position: relative;
+  transform-style: preserve-3d;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
   z-index: 2;
+
+  &:hover {
+    border-color: rgba(17, 18, 23, 0.2);
+    box-shadow: 0 32px 62px rgba(11, 20, 34, 0.24), inset 0 1px 0 rgba(255, 255, 255, 1);
+  }
+
+  &::before {
+    background: linear-gradient(
+      135deg,
+      rgba(29, 92, 140, 0.28),
+      rgba(255, 255, 255, 0.08) 38%,
+      rgba(189, 140, 58, 0.24)
+    );
+    border-radius: inherit;
+    content: '';
+    inset: 0;
+    padding: 1px;
+    pointer-events: none;
+    position: absolute;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    z-index: 5;
+  }
 
   img {
     margin: 1.25rem auto 0;
@@ -103,17 +132,56 @@
 }
 
 .hero__imageBack {
-  background: linear-gradient(180deg, rgba(13, 65, 107, 0.11), rgba(13, 65, 107, 0));
+  background: linear-gradient(180deg, rgba(13, 65, 107, 0.16), rgba(13, 65, 107, 0));
   border-radius: 28px;
   inset: 1rem;
   position: absolute;
+  z-index: 1;
+}
+
+.hero__shine {
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 4;
+}
+
+.hero__portrait {
+  filter: drop-shadow(0 20px 34px rgba(9, 17, 30, 0.22));
+  position: relative;
+  z-index: 3;
+}
+
+.hero__ring {
+  border: 1px solid rgba(21, 56, 84, 0.2);
+  border-radius: 999px;
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+}
+
+.hero__ring--one {
+  height: 6.8rem;
+  right: -1.8rem;
+  top: -1.8rem;
+  width: 6.8rem;
+}
+
+.hero__ring--two {
+  border-color: rgba(189, 140, 58, 0.28);
+  bottom: -2.2rem;
+  height: 8rem;
+  left: -2.1rem;
+  width: 8rem;
 }
 
 .hero__badge {
-  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.76);
   border: 1px solid rgba(17, 18, 23, 0.12);
   border-radius: 999px;
   bottom: 1.2rem;
+  box-shadow: 0 10px 20px rgba(11, 20, 34, 0.14);
   color: #0f436d;
   font-size: 0.76rem;
   font-weight: 800;
@@ -122,6 +190,7 @@
   padding: 0.52rem 0.86rem;
   position: absolute;
   text-transform: uppercase;
+  z-index: 5;
 }
 
 .hero__floating {
@@ -136,16 +205,29 @@
   padding: 0.48rem 0.72rem;
   position: absolute;
   text-transform: uppercase;
+  z-index: 5;
 }
 
 .hero__floating--one {
+  animation: floatTag 4.6s ease-in-out infinite;
   right: 1rem;
   top: 1.2rem;
 }
 
 .hero__floating--two {
+  animation: floatTag 5.2s ease-in-out infinite 0.35s;
   right: 1rem;
   top: 3.7rem;
+}
+
+@keyframes floatTag {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 @media (max-width: 1024px) {
@@ -160,6 +242,7 @@
 
   .hero__imageWrap {
     min-height: 27rem;
+    transform: none !important;
 
     img {
       max-height: 25rem;
@@ -191,5 +274,12 @@
 
   .hero__imageWrap {
     padding: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__floating--one,
+  .hero__floating--two {
+    animation: none;
   }
 }

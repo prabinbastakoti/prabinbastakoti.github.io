@@ -197,6 +197,32 @@ main {
   padding: 0.4rem 0.75rem;
 }
 
+.toTop {
+  align-items: center;
+  backdrop-filter: blur(14px) saturate(170%);
+  -webkit-backdrop-filter: blur(14px) saturate(170%);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.64), rgba(245, 249, 253, 0.42));
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 999px;
+  bottom: 1.35rem;
+  box-shadow: 0 16px 30px rgba(14, 22, 35, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.74);
+  color: #173b5a;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 1.2rem;
+  font-weight: 800;
+  height: 3rem;
+  justify-content: center;
+  position: fixed;
+  right: 1.35rem;
+  width: 3rem;
+  z-index: 25;
+}
+
+.toTop:hover {
+  transform: translateY(-2px);
+}
+
 @media (max-width: 1024px) {
   .container {
     width: min(1180px, calc(100% - 2.2rem));
@@ -219,5 +245,12 @@ main {
 
   .bgGrid {
     background-size: 34px 34px;
+  }
+
+  .toTop {
+    bottom: 1rem;
+    height: 2.7rem;
+    right: 1rem;
+    width: 2.7rem;
   }
 }

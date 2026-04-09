@@ -1,5 +1,12 @@
 import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useScroll,
+  useSpring,
+  useTransform,
+} from 'framer-motion';
 import './hero.scss';
 
 const metrics = [
@@ -10,15 +17,50 @@ const metrics = [
 
 const Hero = () => {
   const heroRef = useRef(null);
+  const cardRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start end', 'end start'],
   });
 
+  const tiltX = useMotionValue(0);
+  const tiltY = useMotionValue(0);
+  const glowX = useMotionValue(16);
+  const glowY = useMotionValue(14);
+
+  const smoothTiltX = useSpring(tiltX, { stiffness: 180, damping: 22, mass: 0.45 });
+  const smoothTiltY = useSpring(tiltY, { stiffness: 180, damping: 22, mass: 0.45 });
+  const smoothGlowX = useSpring(glowX, { stiffness: 120, damping: 20 });
+  const smoothGlowY = useSpring(glowY, { stiffness: 120, damping: 20 });
+  const dynamicShine = useMotionTemplate`radial-gradient(circle at ${smoothGlowX}% ${smoothGlowY}%, rgba(255, 255, 255, 0.54) 0%, rgba(255, 255, 255, 0) 24%)`;
+
   const contentY = useTransform(scrollYProgress, [0, 1], [38, -42]);
   const portraitY = useTransform(scrollYProgress, [0, 1], [70, -55]);
   const statusY = useTransform(scrollYProgress, [0, 1], [22, -20]);
   const haloY = useTransform(scrollYProgress, [0, 1], [16, -36]);
+  const imageY = useTransform(scrollYProgress, [0, 1], [22, -20]);
+
+  const handleImageMove = (event) => {
+    if (!cardRef.current || window.innerWidth < 900) {
+      return;
+    }
+
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width;
+    const y = (event.clientY - rect.top) / rect.height;
+
+    tiltY.set((x - 0.5) * 11);
+    tiltX.set((0.5 - y) * 10);
+    glowX.set(x * 100);
+    glowY.set(y * 100);
+  };
+
+  const resetImageTilt = () => {
+    tiltX.set(0);
+    tiltY.set(0);
+    glowX.set(16);
+    glowY.set(14);
+  };
 
   return (
     <div className='hero container' ref={heroRef}>
@@ -41,8 +83,13 @@ const Hero = () => {
         </p>
 
         <div className='hero__actions'>
-          <a href='#portfolio' className='btn btn--primary'>
-            View case studies
+          <a
+            href='/prabinbastakoti.pdf'
+            target='_blank'
+            rel='noreferrer'
+            className='btn btn--primary'
+          >
+            View resume
           </a>
           <a href='#contact' className='btn btn--ghost'>
             Start a project
@@ -68,9 +115,27 @@ const Hero = () => {
         transition={{ duration: 0.8, ease: 'easeOut' }}
       >
         <motion.div className='hero__halo' style={{ y: haloY }} />
-        <div className='hero__imageWrap panel'>
+        <motion.div
+          className='hero__imageWrap panel'
+          ref={cardRef}
+          style={{
+            rotateX: smoothTiltX,
+            rotateY: smoothTiltY,
+          }}
+          onMouseMove={handleImageMove}
+          onMouseLeave={resetImageTilt}
+        >
           <div className='hero__imageBack'></div>
-          <img src='/hero.png' alt='Portrait of Prabin Bastakoti' />
+          <motion.div className='hero__shine' style={{ background: dynamicShine }} />
+          <div className='hero__ring hero__ring--one'></div>
+          <div className='hero__ring hero__ring--two'></div>
+
+          <motion.img
+            className='hero__portrait'
+            src='/hero.png'
+            alt='Portrait of Prabin Bastakoti'
+            style={{ y: imageY }}
+          />
 
           <motion.div className='hero__badge' style={{ y: statusY }}>
             Available for new projects
@@ -80,7 +145,7 @@ const Hero = () => {
             Premium UX
           </div>
           <div className='hero__floating hero__floating--two'>React + Node</div>
-        </div>
+        </motion.div>
       </motion.div>
     </div>
   );
