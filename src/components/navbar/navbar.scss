@@ -1,28 +1,114 @@
-@import '../../app.scss';
-
 .navbar {
-  height: 100px;
+  backdrop-filter: blur(12px);
+  background: rgba(244, 241, 234, 0.78);
+  border-bottom: 1px solid rgba(22, 22, 21, 0.07);
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 80;
+}
 
-  .wrapper {
-    max-width: 1366px;
-    margin: auto;
+.navbar__inner {
+  align-items: center;
+  display: flex;
+  gap: 1.2rem;
+  height: 5rem;
+  justify-content: space-between;
+}
+
+.navbar__brand {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.navbar__desktop {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar__desktop a {
+  border-radius: 999px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.navbar__desktop a:hover {
+  background: rgba(24, 78, 67, 0.08);
+  color: var(--accent);
+}
+
+.navbar__actions {
+  align-items: center;
+  display: flex;
+  gap: 0.7rem;
+}
+
+.navbar__resume {
+  white-space: nowrap;
+}
+
+.navbar__menuButton {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  display: none;
+  flex-direction: column;
+  gap: 0.35rem;
+  height: 2.2rem;
+  justify-content: center;
+  width: 2.2rem;
+}
+
+.navbar__menuButton span {
+  background: var(--text);
+  border-radius: 999px;
+  height: 2px;
+  width: 1.35rem;
+}
+
+.navbar__mobile {
+  background: rgba(249, 246, 240, 0.96);
+  border-bottom: 1px solid rgba(22, 22, 21, 0.08);
+  display: none;
+  padding: 0.4rem 1rem 1rem;
+}
+
+.navbar__mobile a {
+  border-radius: 12px;
+  color: var(--text-muted);
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.65rem 0.8rem;
+}
+
+.navbar__mobile a:hover {
+  background: rgba(24, 78, 67, 0.08);
+  color: var(--accent);
+}
+
+@media (max-width: 1024px) {
+  .navbar__desktop,
+  .navbar__resume {
+    display: none;
+  }
+
+  .navbar__menuButton,
+  .navbar__mobile {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
+  }
 
-    span {
-      font-weight: bold;
-    }
-
-    .social {
-      display: flex;
-      gap: 20px;
-
-      img {
-        width: 30px;
-        height: 30px;
-      }
-    }
+  .navbar__mobile {
+    flex-direction: column;
   }
 }

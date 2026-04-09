@@ -1,42 +1,50 @@
 import './app.scss';
-import Contact from './components/contact/Contact';
-import Cursor from './components/cursor/Cursor';
-import Hero from './components/hero/Hero';
 import Navbar from './components/navbar/Navbar';
-import Parallax from './components/parallax/Parallax';
-import Portfolio from './components/portfolio/Portfolio';
+import Hero from './components/hero/Hero';
+import About from './components/about/About';
 import Services from './components/services/Services';
+import Process from './components/process/Process';
+import Experience from './components/experience/Experience';
+import Portfolio from './components/portfolio/Portfolio';
+import Contact from './components/contact/Contact';
 
 const App = () => {
   return (
-    <>
-      <div className='desktop'>
-        <Cursor />
-        <section id='Homepage'>
-          <Navbar />
+    <div className='app'>
+      <div className='ambient ambient--one'></div>
+      <div className='ambient ambient--two'></div>
+      <Navbar />
+
+      <main>
+        <section id='home' className='section section--hero'>
           <Hero />
         </section>
-        <section id='Services'>
-          <Parallax type='services' />
+
+        <section id='about' className='section'>
+          <About />
         </section>
-        <section>
+
+        <section id='services' className='section'>
           <Services />
         </section>
-        <section id='Portfolio'>
-          <Parallax type='portfolio' />
+
+        <section id='process' className='section'>
+          <Process />
         </section>
-        <Portfolio />
-        <section id='Contact'>
+
+        <section id='experience' className='section'>
+          <Experience />
+        </section>
+
+        <section id='portfolio' className='section'>
+          <Portfolio />
+        </section>
+
+        <section id='contact' className='section'>
           <Contact />
         </section>
-      </div>
-      <div className='mobile'>
-        <div className='mobile__container'>
-          <img src='/mobile.png' alt='' />
-          <h1>Please access this site on a PC</h1>
-        </div>
-      </div>
-    </>
+      </main>
+    </div>
   );
 };
 

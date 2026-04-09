@@ -1,61 +1,86 @@
-@import '../../app.scss';
-
 .contact {
-  height: 100%;
-  max-width: 1366px;
-  margin: auto;
+  display: grid;
+  gap: 1.2rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+.contact__intro p {
+  color: var(--text-muted);
+  margin-top: 0.85rem;
+  max-width: 56ch;
+}
+
+.contact__info {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 1.25rem;
+  padding: 1rem;
+}
+
+.contact__info p {
   display: flex;
-  align-items: center;
-  gap: 50px;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin: 0;
+}
 
-  .textContainer {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+.contact__info strong {
+  color: var(--text);
+  font-size: 0.83rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
 
-    h1 {
-      font-size: 100px;
-      line-height: 88px;
-    }
+.contact__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.2rem;
+}
 
-    span {
-      font-weight: 300;
-    }
-  }
+.contact__form label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  margin-top: 0.35rem;
+}
 
-  .formContainer {
-    flex: 1;
-    position: relative;
+.contact__form input,
+.contact__form textarea {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(22, 22, 21, 0.12);
+  border-radius: 12px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 0.72rem 0.8rem;
+}
 
-    .phoneSvg {
-      stroke: orange;
-      position: absolute;
-      margin: auto;
-      z-index: -1;
-    }
+.contact__form input:focus,
+.contact__form textarea:focus {
+  border-color: rgba(24, 78, 67, 0.45);
+  outline: none;
+}
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+.contact__form button {
+  margin-top: 0.6rem;
+}
 
-      input,
-      textarea {
-        padding: 20px;
-        background-color: transparent;
-        border: 1px solid white;
-        color: white;
-        border-radius: 5px;
-      }
+.contact__message {
+  font-size: 0.9rem;
+  margin-top: 0.45rem;
+}
 
-      button {
-        padding: 20px;
-        border: none;
-        background-color: orange;
-        cursor: pointer;
-        font-weight: 500;
-      }
-    }
+.contact__message--success {
+  color: var(--accent);
+}
+
+.contact__message--error {
+  color: #a3322f;
+}
+
+@media (max-width: 900px) {
+  .contact {
+    grid-template-columns: 1fr;
   }
 }

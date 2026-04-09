@@ -1,0 +1,47 @@
+.about {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.about__intro,
+.about__facts,
+.about__skills {
+  padding: 1.55rem;
+}
+
+.about__intro p {
+  color: var(--text-muted);
+  margin-top: 0.95rem;
+  max-width: 66ch;
+}
+
+.about__details {
+  display: grid;
+  gap: 1.2rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.about__facts h3,
+.about__skills h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.7rem;
+}
+
+.about__facts ul {
+  color: var(--text-muted);
+  display: grid;
+  gap: 0.55rem;
+  padding-left: 1rem;
+}
+
+.about__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+@media (max-width: 840px) {
+  .about__details {
+    grid-template-columns: 1fr;
+  }
+}

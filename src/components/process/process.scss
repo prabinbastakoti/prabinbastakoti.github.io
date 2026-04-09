@@ -1,0 +1,48 @@
+.process {
+  display: grid;
+  gap: 1.35rem;
+}
+
+.process__header {
+  max-width: 68ch;
+}
+
+.process__list {
+  display: grid;
+  gap: 0.95rem;
+}
+
+.process__item {
+  align-items: flex-start;
+  border-radius: var(--radius-md);
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: auto 1fr;
+  padding: 1.2rem;
+}
+
+.process__id {
+  color: var(--accent-2);
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1;
+  min-width: 2.5rem;
+}
+
+.process__item h3 {
+  font-size: 1.04rem;
+  line-height: 1.3;
+}
+
+.process__item p {
+  color: var(--text-muted);
+  margin-top: 0.45rem;
+}
+
+@media (max-width: 680px) {
+  .process__item {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+}

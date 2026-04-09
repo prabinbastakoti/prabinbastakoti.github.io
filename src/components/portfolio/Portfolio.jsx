@@ -1,96 +1,96 @@
-import { useRef } from 'react';
+import { motion } from 'framer-motion';
 import './portfolio.scss';
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 
-const items = [
+const projects = [
   {
-    id: 1,
     title: 'PrepWise',
-    img: '/prepwise.png',
-    desc: 'Get Interview-Ready with AI-Powered Practice & Feedback',
-    link: 'https://github.com/prabinbastakoti/PrepWise',
+    image: '/prepwise.png',
+    description:
+      'AI-assisted interview preparation platform with guided practice flows and actionable feedback loops.',
+    tags: ['React', 'Node.js', 'AI UX'],
     live: 'https://prep-wise-ruddy.vercel.app/',
+    source: 'https://github.com/prabinbastakoti/PrepWise',
   },
   {
-    id: 2,
     title: 'Pahuna',
-    img: '/pahuna.png',
-    desc: 'An innovative online homestay marketplace application, designed to revolutionize the way individuals explore, book, and experience homestays nationwide.',
-    link: 'https://github.com/prabinbastakoti/Pahuna',
+    image: '/pahuna.png',
+    description:
+      'Homestay marketplace platform connecting travelers and local hosts through a reliable booking workflow.',
+    tags: ['MERN', 'Marketplace', 'Authentication'],
     live: 'https://pahuna.onrender.com/',
+    source: 'https://github.com/prabinbastakoti/Pahuna',
   },
   {
-    id: 3,
     title: 'ShikshyaLaya',
-    img: '/shikshyalaya.png',
-    desc: 'ShikshyaLaya is an online Platform trying to Democratize access to data & information every student needs.',
-    link: 'https://github.com/prabinbastakoti/Learning-Management-System',
+    image: '/shikshyalaya.png',
+    description:
+      'Learning platform focused on democratizing educational access with structured student-first experiences.',
+    tags: ['Education', 'Dashboard', 'API'],
     live: 'https://shikshyalaya.onrender.com/',
+    source: 'https://github.com/prabinbastakoti/Learning-Management-System',
+  },
+  {
+    title: 'Portfolio Platform',
+    image: '/hero.png',
+    description:
+      'Personal brand website designed with premium visual language and responsive interactions across all devices.',
+    tags: ['Branding', 'UI Engineering', 'Framer Motion'],
+    live: 'https://prabinbastakoti.github.io/',
+    source: 'https://github.com/prabinbastakoti/prabinbastakoti.github.io',
   },
 ];
 
-const Single = ({ item }) => {
-  const ref = useRef();
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [-300, 300]);
-
-  return (
-    <section>
-      <div className='container'>
-        <div className='wrapper'>
-          <div className='imageContainer' ref={ref}>
-            <img src={item.img} alt='' />
-          </div>
-          <motion.div className='textContainer' style={{ y }}>
-            <h2>{item.title}</h2>
-            <p>{item.desc}</p>
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 24,
-              }}
-            >
-              <a href={item.live} target='_blank'>
-                <button>See Live</button>
-              </a>
-              <a href={item.link} target='_blank'>
-                <button>See Github</button>
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
 const Portfolio = () => {
-  const ref = useRef();
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['end end', 'start start'],
-  });
-
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-  });
-
   return (
-    <div className='portfolio' ref={ref}>
-      <div className='progress'>
-        <h1>Featured Works</h1>
-        <motion.div style={{ scaleX }} className='progressBar'></motion.div>
+    <div className='portfolio container'>
+      <div className='portfolio__header'>
+        <p className='section-kicker'>Portfolio</p>
+        <h2 className='section-title'>Featured projects</h2>
       </div>
-      {items.map((item) => (
-        <Single item={item} key={item.id} />
-      ))}
+
+      <div className='portfolio__grid'>
+        {projects.map((project, index) => (
+          <motion.article
+            className='portfolio__card surface'
+            key={project.title}
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.22 }}
+            transition={{ duration: 0.45, delay: index * 0.08 }}
+          >
+            <div className='portfolio__imageWrap'>
+              <img src={project.image} alt={project.title} />
+            </div>
+
+            <div className='portfolio__content'>
+              <h3>{project.title}</h3>
+              <p>{project.description}</p>
+
+              <div className='portfolio__tags'>
+                {project.tags.map((tag) => (
+                  <span className='chip' key={tag}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className='portfolio__actions'>
+                <a href={project.live} target='_blank' rel='noreferrer' className='btn'>
+                  Live Demo
+                </a>
+                <a
+                  href={project.source}
+                  target='_blank'
+                  rel='noreferrer'
+                  className='btn btn--outline'
+                >
+                  Source
+                </a>
+              </div>
+            </div>
+          </motion.article>
+        ))}
+      </div>
     </div>
   );
 };

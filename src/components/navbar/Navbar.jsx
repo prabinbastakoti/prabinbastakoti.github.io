@@ -1,39 +1,84 @@
-import Sidebar from '../sidebar/Sidebar';
+import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import './navbar.scss';
-import { motion } from 'framer-motion';
+
+const links = [
+  { label: 'Home', href: '#home' },
+  { label: 'About', href: '#about' },
+  { label: 'Services', href: '#services' },
+  { label: 'Process', href: '#process' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Portfolio', href: '#portfolio' },
+  { label: 'Contact', href: '#contact' },
+];
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <div className='navbar'>
-      <Sidebar />
-      <div className='wrapper'>
-        <motion.span
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-        ></motion.span>
-        <div className='social'>
+    <motion.header
+      className='navbar'
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+    >
+      <div className='container navbar__inner'>
+        <a href='#home' className='navbar__brand'>
+          <span>PRABIN</span>
+          <span>BASTAKOTI</span>
+        </a>
+
+        <nav className='navbar__desktop' aria-label='Primary'>
+          {links.map((link) => (
+            <a key={link.href} href={link.href}>
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        <div className='navbar__actions'>
           <a
-            href='https://www.facebook.com/people/Prabin-Bastakoti/pfbid024JwrPsCrJpScc4icNPR2vzMiQHjaAqX1zxYMtnxZYKhyFhFVTDKax6R4TZG6PZSfl/'
+            className='btn btn--outline navbar__resume'
+            href='/prabinbastakoti.pdf'
             target='_blank'
+            rel='noreferrer'
           >
-            <img src='/facebook.png' alt='' />
+            Resume
           </a>
-          <a href='https://www.instagram.com/prabinbastakotii/' target='_blank'>
-            <img src='/instagram.png' alt='' />
-          </a>
-          <a
-            href='https://www.linkedin.com/in/prabin-bastakoti-4561a62a9'
-            target='_blank'
+          <button
+            className='navbar__menuButton'
+            aria-label='Toggle menu'
+            onClick={() => setIsOpen((prev) => !prev)}
           >
-            <img src='/linkedin.png' alt='' />
-          </a>
-          <a href='https://github.com/prabinbastakoti' target='_blank'>
-            <img src='/github.png' alt='' />
-          </a>
+            <span></span>
+            <span></span>
+          </button>
         </div>
       </div>
-    </div>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.nav
+            className='navbar__mobile'
+            initial={{ opacity: 0, y: -16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.25 }}
+            aria-label='Mobile'
+          >
+            {links.map((link) => (
+              <a key={link.href} href={link.href} onClick={closeMenu}>
+                {link.label}
+              </a>
+            ))}
+          </motion.nav>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 };
 

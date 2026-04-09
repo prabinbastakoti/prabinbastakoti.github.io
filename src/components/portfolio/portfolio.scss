@@ -1,77 +1,75 @@
-@import '../../app.scss';
-
 .portfolio {
-  position: relative;
+  display: grid;
+  gap: 1.35rem;
+}
 
-  .progress {
-    position: sticky;
-    top: 0;
-    left: 0;
-    padding-top: 50px;
-    text-align: center;
-    color: orange;
-    font-size: 36px;
+.portfolio__header {
+  max-width: 65ch;
+}
 
-    .progressBar {
-      height: 10px;
-      background-color: white;
-    }
+.portfolio__grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.portfolio__card {
+  border-radius: var(--radius-lg);
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 0.95fr 1.05fr;
+  overflow: hidden;
+}
+
+.portfolio__imageWrap {
+  min-height: 235px;
+  overflow: hidden;
+}
+
+.portfolio__imageWrap img {
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+  width: 100%;
+}
+
+.portfolio__card:hover .portfolio__imageWrap img {
+  transform: scale(1.04);
+}
+
+.portfolio__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 1.2rem 1.2rem 1.2rem 0;
+}
+
+.portfolio__content h3 {
+  font-size: 1.2rem;
+}
+
+.portfolio__content p {
+  color: var(--text-muted);
+}
+
+.portfolio__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.portfolio__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.2rem;
+}
+
+@media (max-width: 920px) {
+  .portfolio__card {
+    grid-template-columns: 1fr;
   }
 
-  .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-
-    .wrapper {
-      max-width: 1260px;
-      height: 100%;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 50px;
-
-      .imageContainer {
-        flex: 1;
-        height: 50%;
-        overflow: hidden;
-
-        img {
-          width: 90%;
-          height: 100%;
-          object-fit: contain;
-          border-radius: 8px 8px;
-        }
-      }
-
-      .textContainer {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-
-        h2 {
-          font-size: 72px;
-        }
-
-        p {
-          color: gray;
-          font-size: 20px;
-        }
-
-        button {
-          background-color: orange;
-          border: none;
-          border-radius: 10px;
-          padding: 10px;
-          width: 200px;
-          cursor: pointer;
-        }
-      }
-    }
+  .portfolio__content {
+    padding: 0 1.1rem 1.1rem;
   }
 }
