@@ -110,6 +110,13 @@ const Navbar = () => {
                 activeHref === link.href ? 'isActive' : ''
               }`}
             >
+              {activeHref === link.href && (
+                <motion.span
+                  className='navbar__desktopActiveGlow'
+                  layoutId='desktopNavActive'
+                  transition={{ type: 'spring', stiffness: 340, damping: 28 }}
+                />
+              )}
               <span className='navbar__desktopDot' aria-hidden='true'></span>
               <span className='navbar__desktopText'>{link.label}</span>
             </a>
