@@ -10,7 +10,8 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "npm run build && wrangler dev",
     "predeploy": "npm run build",
-    "deploy": "npm run build && wrangler deploy"
+    "deploy": "gh-pages -d dist",
+    "deploy:cf": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
