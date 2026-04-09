@@ -103,6 +103,25 @@ main {
   z-index: 1;
 }
 
+.siteFooter {
+  padding: 0.8rem 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.siteFooter__inner {
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+
+  p {
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-align: center;
+  }
+}
+
 .section {
   padding: clamp(4.4rem, 7vw, 7.2rem) 0;
   scroll-margin-top: 6.2rem;
@@ -251,6 +270,10 @@ main {
 
   .section--hero {
     padding-top: 6.5rem;
+  }
+
+  #about.section {
+    padding-top: 0.2rem;
   }
 
   .btn {

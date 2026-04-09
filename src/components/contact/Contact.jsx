@@ -1,14 +1,85 @@
-import { useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import "./contact.scss";
+
+const MESSAGE_DISMISS_SECONDS = 10;
 
 const Contact = () => {
   const formRef = useRef();
   const [state, setState] = useState({ type: "", message: "", sending: false });
+  const [secondsLeft, setSecondsLeft] = useState(MESSAGE_DISMISS_SECONDS);
+  const [isMessageVisible, setIsMessageVisible] = useState(false);
+  const [introLockHeight, setIntroLockHeight] = useState(0);
+  const dismissTimeoutRef = useRef(null);
+  const countdownIntervalRef = useRef(null);
+
+  const clearMessageTimers = () => {
+    if (dismissTimeoutRef.current) {
+      clearTimeout(dismissTimeoutRef.current);
+      dismissTimeoutRef.current = null;
+    }
+
+    if (countdownIntervalRef.current) {
+      clearInterval(countdownIntervalRef.current);
+      countdownIntervalRef.current = null;
+    }
+  };
+
+  const showStatusMessage = (type, message) => {
+    clearMessageTimers();
+    setState({ type, message, sending: false });
+    setSecondsLeft(MESSAGE_DISMISS_SECONDS);
+    setIsMessageVisible(true);
+  };
+
+  useEffect(() => {
+    if (!state.message || !isMessageVisible) {
+      return;
+    }
+
+    countdownIntervalRef.current = setInterval(() => {
+      setSecondsLeft((previous) => (previous > 0 ? previous - 1 : 0));
+    }, 1000);
+
+    dismissTimeoutRef.current = setTimeout(() => {
+      setIsMessageVisible(false);
+      clearMessageTimers();
+    }, MESSAGE_DISMISS_SECONDS * 1000);
+
+    return () => {
+      clearMessageTimers();
+    };
+  }, [state.message, isMessageVisible]);
+
+  useEffect(() => {
+    return () => {
+      clearMessageTimers();
+    };
+  }, []);
+
+  useEffect(() => {
+    const updateIntroLockHeight = () => {
+      if (state.message || !formRef.current) {
+        return;
+      }
+
+      setIntroLockHeight(formRef.current.offsetHeight);
+    };
+
+    updateIntroLockHeight();
+    window.addEventListener("resize", updateIntroLockHeight);
+
+    return () => {
+      window.removeEventListener("resize", updateIntroLockHeight);
+    };
+  }, [state.message, state.sending]);
 
   const sendEmail = async (event) => {
     event.preventDefault();
+    clearMessageTimers();
+    setIsMessageVisible(false);
+    setSecondsLeft(MESSAGE_DISMISS_SECONDS);
     setState({ type: "", message: "", sending: true });
 
     try {
@@ -19,25 +90,32 @@ const Contact = () => {
         "Mw9UkDsQIzGw09274",
       );
 
-      setState({
-        type: "success",
-        message: "Message received. I will get back to you shortly.",
-        sending: false,
-      });
+      showStatusMessage(
+        "success",
+        "Message received. I will get back to you shortly.",
+      );
       formRef.current.reset();
     } catch (error) {
-      setState({
-        type: "error",
-        message: "Something went wrong while sending. Please try again.",
-        sending: false,
-      });
+      showStatusMessage(
+        "error",
+        "Something went wrong while sending. Please try again.",
+      );
     }
   };
+
+  const handleMessageExitComplete = () => {
+    if (state.message) {
+      setState((previous) => ({ ...previous, type: "", message: "" }));
+    }
+  };
+
+  const shouldLockIntroHeight = Boolean(state.message) && introLockHeight > 0;
 
   return (
     <div className='contact container'>
       <motion.div
         className='contact__intro panel'
+        style={shouldLockIntroHeight ? { height: `${introLockHeight}px` } : undefined}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.35 }}
@@ -112,11 +190,20 @@ const Contact = () => {
           {state.sending ? "Sending..." : "Send Message"}
         </button>
 
-        {state.message && (
-          <p className={`contact__message contact__message--${state.type}`}>
-            {state.message}
-          </p>
-        )}
+        <AnimatePresence onExitComplete={handleMessageExitComplete}>
+          {state.message && isMessageVisible && (
+            <motion.p
+              className={`contact__message contact__message--${state.type}`}
+              initial={{ opacity: 0, x: 18 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -36 }}
+              transition={{ duration: 0.32, ease: "easeOut" }}
+            >
+              <span>{state.message}</span>
+              <span className='contact__messageTimer'>{secondsLeft}s</span>
+            </motion.p>
+          )}
+        </AnimatePresence>
       </motion.form>
     </div>
   );

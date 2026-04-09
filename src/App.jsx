@@ -63,6 +63,12 @@ const App = () => {
         </section>
       </main>
 
+      <footer className='siteFooter'>
+        <div className='container siteFooter__inner'>
+          <p>&copy; {new Date().getFullYear()} Prabin Bastakoti. All rights reserved.</p>
+        </div>
+      </footer>
+
       <AnimatePresence>
         {showToTop && (
           <motion.button

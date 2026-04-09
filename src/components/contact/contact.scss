@@ -2,7 +2,7 @@
   display: grid;
   gap: 1rem;
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  padding-bottom: 7rem;
+  padding-bottom: 2.5rem;
 }
 
 .contact__intro {
@@ -85,11 +85,27 @@
 }
 
 .contact__message {
+  align-items: center;
   border-radius: 10px;
+  display: flex;
   font-size: 0.9rem;
   font-weight: 700;
+  gap: 0.75rem;
+  justify-content: space-between;
   margin-top: 0.35rem;
   padding: 0.55rem 0.72rem;
+}
+
+.contact__messageTimer {
+  background: rgba(17, 18, 23, 0.08);
+  border-radius: 999px;
+  flex: 0 0 auto;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  min-width: 2.2rem;
+  padding: 0.14rem 0.5rem;
+  text-align: center;
 }
 
 .contact__message--success {

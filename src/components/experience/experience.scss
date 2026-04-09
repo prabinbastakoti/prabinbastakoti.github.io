@@ -8,7 +8,11 @@
   position: relative;
 
   &::before {
-    background: linear-gradient(180deg, rgba(14, 63, 103, 0.42), rgba(14, 63, 103, 0.14));
+    background: linear-gradient(
+      180deg,
+      rgba(14, 63, 103, 0.42),
+      rgba(14, 63, 103, 0.14)
+    );
     border-radius: 999px;
     bottom: 0.3rem;
     content: '';
@@ -21,6 +25,7 @@
 
 .experience__item {
   padding-left: 2.25rem;
+  padding-top: 0.5rem;
   position: relative;
 }
 

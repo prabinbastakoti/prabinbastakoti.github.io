@@ -27,25 +27,25 @@ const timeline = [
 
 const Experience = () => {
   return (
-    <div className='experience container'>
-      <div className='experience__header'>
-        <p className='eyebrow'>Experience</p>
-        <h2 className='sectionTitle'>Track record across product teams.</h2>
+    <div className="experience container">
+      <div className="experience__header">
+        <p className="eyebrow">Experience</p>
+        <h2 className="sectionTitle">Track record across product teams.</h2>
       </div>
 
-      <div className='experience__timeline'>
+      <div className="experience__timeline">
         {timeline.map((item, index) => (
           <motion.article
-            className='experience__item'
+            className="experience__item"
             key={item.period + item.role}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.45, delay: index * 0.08 }}
           >
-            <span className='experience__dot' aria-hidden='true' />
-            <div className='experience__content panel'>
-              <p className='experience__period'>{item.period}</p>
+            <span className="experience__dot" aria-hidden="true" />
+            <div className="experience__content panel">
+              <p className="experience__period">{item.period}</p>
               <h3>{item.role}</h3>
               <h4>{item.company}</h4>
               <p>{item.details}</p>
