@@ -1,67 +1,90 @@
 import { motion } from 'framer-motion';
 import './about.scss';
 
-const skills = [
+const strengths = [
+  {
+    title: 'Architecture First',
+    detail:
+      'Scalable foundations with clear boundaries, so products stay healthy as features grow.',
+  },
+  {
+    title: 'Interface Precision',
+    detail:
+      'Polished interactions and visual hierarchy designed for confidence, trust, and conversion.',
+  },
+  {
+    title: 'Execution Speed',
+    detail:
+      'Practical workflows that keep momentum high without sacrificing reliability or quality.',
+  },
+];
+
+const stack = [
   'React',
+  'Next.js',
   'Node.js',
-  'Express',
-  'MongoDB',
   'TypeScript',
   'PostgreSQL',
-  'REST APIs',
-  'UI Engineering',
-  'Performance Tuning',
-  'System Design',
+  'MongoDB',
+  'Framer Motion',
+  'REST + GraphQL',
+  'AWS',
+  'CI/CD',
 ];
 
 const About = () => {
   return (
     <div className='about container'>
       <motion.div
-        className='about__intro surface'
+        className='about__intro'
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.25 }}
         transition={{ duration: 0.55 }}
       >
-        <p className='section-kicker'>About Me</p>
-        <h2 className='section-title'>Building products with clarity and craft</h2>
+        <p className='eyebrow'>About</p>
+        <h2 className='sectionTitle'>A product partner, not just a coder.</h2>
         <p>
-          I am a full-stack developer focused on delivering dependable software
-          with a premium user experience. My approach balances business goals,
-          technical quality, and visual polish so products feel both meaningful
-          and delightful.
+          I blend engineering discipline with a design-led mindset. The goal is
+          simple: build software that feels premium to users and predictable to
+          teams.
         </p>
       </motion.div>
 
-      <motion.div
-        className='about__details'
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.55, delay: 0.1 }}
-      >
-        <div className='about__facts surface'>
-          <h3>Quick Highlights</h3>
-          <ul>
-            <li>Based in Kathmandu, working globally with remote teams.</li>
-            <li>Strong focus on scalable architecture and clean code.</li>
-            <li>Experience across startups, educational products, and SaaS.</li>
-            <li>Comfortable owning projects from idea to launch.</li>
-          </ul>
+      <div className='about__details'>
+        <div className='about__grid'>
+          {strengths.map((item, index) => (
+            <motion.article
+              key={item.title}
+              className='about__card panel'
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.48, delay: index * 0.08 }}
+            >
+              <h3>{item.title}</h3>
+              <p>{item.detail}</p>
+            </motion.article>
+          ))}
         </div>
 
-        <div className='about__skills surface'>
-          <h3>Core Stack</h3>
+        <motion.div
+          className='about__stack panel'
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          <h3>Current stack</h3>
           <div className='about__chips'>
-            {skills.map((skill) => (
-              <span className='chip' key={skill}>
-                {skill}
+            {stack.map((item) => (
+              <span className='chip' key={item}>
+                {item}
               </span>
             ))}
           </div>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </div>
   );
 };

@@ -1,39 +1,51 @@
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import './hero.scss';
 
 const metrics = [
-  { value: '4+', label: 'Years building products' },
-  { value: '18+', label: 'Projects delivered' },
-  { value: '99%', label: 'Client satisfaction focus' },
+  { value: '4+', label: 'Years' },
+  { value: '18+', label: 'Products launched' },
+  { value: '99%', label: 'Delivery reliability' },
 ];
 
 const Hero = () => {
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start end', 'end start'],
+  });
+
+  const contentY = useTransform(scrollYProgress, [0, 1], [38, -42]);
+  const portraitY = useTransform(scrollYProgress, [0, 1], [70, -55]);
+  const statusY = useTransform(scrollYProgress, [0, 1], [22, -20]);
+  const haloY = useTransform(scrollYProgress, [0, 1], [16, -36]);
+
   return (
-    <div className='hero container'>
+    <div className='hero container' ref={heroRef}>
       <motion.div
         className='hero__content'
-        initial={{ opacity: 0, y: 20 }}
+        style={{ y: contentY }}
+        initial={{ opacity: 0, y: 26 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.65 }}
+        viewport={{ once: true, amount: 0.45 }}
+        transition={{ duration: 0.7 }}
       >
-        <p className='section-kicker'>Full-Stack Developer | Kathmandu, Nepal</p>
-        <h1>
-          I craft premium digital experiences that feel elegant, fast, and
-          human.
+        <p className='eyebrow'>Software Developer | Kathmandu, Nepal</p>
+        <h1 className='hero__title'>
+          Digital products with
+          <span> clean architecture and luxury-level UI craft.</span>
         </h1>
         <p className='hero__lead'>
-          I help founders and teams turn product ideas into high-quality web
-          applications with clean architecture, intentional UI, and reliable
-          performance.
+          I partner with founders and teams to design and ship premium web
+          platforms that are fast, elegant, and engineered for long-term scale.
         </p>
 
         <div className='hero__actions'>
-          <a href='#portfolio' className='btn'>
-            View Projects
+          <a href='#portfolio' className='btn btn--primary'>
+            View case studies
           </a>
-          <a href='#contact' className='btn btn--outline'>
-            Let&apos;s Talk
+          <a href='#contact' className='btn btn--ghost'>
+            Start a project
           </a>
         </div>
 
@@ -49,16 +61,25 @@ const Hero = () => {
 
       <motion.div
         className='hero__visual'
-        initial={{ opacity: 0, scale: 0.96 }}
+        style={{ y: portraitY }}
+        initial={{ opacity: 0, scale: 0.92 }}
         whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.75, ease: 'easeOut' }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
       >
-        <div className='hero__imageWrap'>
+        <motion.div className='hero__halo' style={{ y: haloY }} />
+        <div className='hero__imageWrap panel'>
+          <div className='hero__imageBack'></div>
           <img src='/hero.png' alt='Portrait of Prabin Bastakoti' />
-          <div className='hero__badge'>
-            <span>Available for new projects</span>
+
+          <motion.div className='hero__badge' style={{ y: statusY }}>
+            Available for new projects
+          </motion.div>
+
+          <div className='hero__floating hero__floating--one'>
+            Premium UX
           </div>
+          <div className='hero__floating hero__floating--two'>React + Node</div>
         </div>
       </motion.div>
     </div>

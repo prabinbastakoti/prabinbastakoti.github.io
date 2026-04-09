@@ -29,29 +29,20 @@ const projects = [
     live: 'https://shikshyalaya.onrender.com/',
     source: 'https://github.com/prabinbastakoti/Learning-Management-System',
   },
-  {
-    title: 'Portfolio Platform',
-    image: '/hero.png',
-    description:
-      'Personal brand website designed with premium visual language and responsive interactions across all devices.',
-    tags: ['Branding', 'UI Engineering', 'Framer Motion'],
-    live: 'https://prabinbastakoti.github.io/',
-    source: 'https://github.com/prabinbastakoti/prabinbastakoti.github.io',
-  },
 ];
 
 const Portfolio = () => {
   return (
     <div className='portfolio container'>
       <div className='portfolio__header'>
-        <p className='section-kicker'>Portfolio</p>
-        <h2 className='section-title'>Featured projects</h2>
+        <p className='eyebrow'>Portfolio</p>
+        <h2 className='sectionTitle'>Selected product work.</h2>
       </div>
 
       <div className='portfolio__grid'>
         {projects.map((project, index) => (
           <motion.article
-            className='portfolio__card surface'
+            className='portfolio__card panel'
             key={project.title}
             initial={{ opacity: 0, y: 22 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -63,6 +54,9 @@ const Portfolio = () => {
             </div>
 
             <div className='portfolio__content'>
+              <p className='portfolio__index'>
+                Project {String(index + 1).padStart(2, '0')}
+              </p>
               <h3>{project.title}</h3>
               <p>{project.description}</p>
 
@@ -75,14 +69,19 @@ const Portfolio = () => {
               </div>
 
               <div className='portfolio__actions'>
-                <a href={project.live} target='_blank' rel='noreferrer' className='btn'>
+                <a
+                  href={project.live}
+                  target='_blank'
+                  rel='noreferrer'
+                  className='btn btn--primary'
+                >
                   Live Demo
                 </a>
                 <a
                   href={project.source}
                   target='_blank'
                   rel='noreferrer'
-                  className='btn btn--outline'
+                  className='btn btn--ghost'
                 >
                   Source
                 </a>

@@ -4,7 +4,7 @@ import './experience.scss';
 const timeline = [
   {
     period: '2024 - Present',
-    role: 'Full-Stack Developer',
+    role: 'Software Developer',
     company: 'Independent and Client Projects',
     details:
       'Designing and shipping production-ready web apps with React, Node.js, and modern cloud workflows.',
@@ -29,24 +29,27 @@ const Experience = () => {
   return (
     <div className='experience container'>
       <div className='experience__header'>
-        <p className='section-kicker'>Experience</p>
-        <h2 className='section-title'>Timeline of impact</h2>
+        <p className='eyebrow'>Experience</p>
+        <h2 className='sectionTitle'>Track record across product teams.</h2>
       </div>
 
       <div className='experience__timeline'>
         {timeline.map((item, index) => (
           <motion.article
-            className='experience__item surface'
+            className='experience__item'
             key={item.period + item.role}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.45, delay: index * 0.08 }}
           >
-            <p className='experience__period'>{item.period}</p>
-            <h3>{item.role}</h3>
-            <h4>{item.company}</h4>
-            <p>{item.details}</p>
+            <span className='experience__dot' aria-hidden='true' />
+            <div className='experience__content panel'>
+              <p className='experience__period'>{item.period}</p>
+              <h3>{item.role}</h3>
+              <h4>{item.company}</h4>
+              <p>{item.details}</p>
+            </div>
           </motion.article>
         ))}
       </div>

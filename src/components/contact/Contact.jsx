@@ -37,23 +37,23 @@ const Contact = () => {
   return (
     <div className='contact container'>
       <motion.div
-        className='contact__intro'
+        className='contact__intro panel'
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.35 }}
         transition={{ duration: 0.45 }}
       >
-        <p className='section-kicker'>Contact</p>
-        <h2 className='section-title'>Let&apos;s build something exceptional</h2>
+        <p className='eyebrow'>Contact</p>
+        <h2 className='sectionTitle'>Let&apos;s craft your next digital product.</h2>
         <p>
-          If you have a product idea, a collaboration, or a role in mind, I
-          would love to hear about it.
+          Share your goals, timeline, and scope. I usually respond within one
+          business day with a clear next step.
         </p>
 
-        <div className='contact__info surface'>
+        <div className='contact__info'>
           <p>
             <strong>Email</strong>
-            <span>prabinbastakoti1@gmail.com</span>
+            <span>info@prabinbastakoti.com.np</span>
           </p>
           <p>
             <strong>Phone</strong>
@@ -67,7 +67,7 @@ const Contact = () => {
       </motion.div>
 
       <motion.form
-        className='contact__form surface'
+        className='contact__form panel'
         ref={formRef}
         onSubmit={sendEmail}
         initial={{ opacity: 0, y: 20 }}
@@ -87,10 +87,10 @@ const Contact = () => {
           rows={6}
           name='message'
           required
-          placeholder='Tell me a little about your project'
+          placeholder='Tell me a little about your project, expected timeline, and goals'
         />
 
-        <button className='btn' type='submit' disabled={state.sending}>
+        <button className='btn btn--primary' type='submit' disabled={state.sending}>
           {state.sending ? 'Sending...' : 'Send Message'}
         </button>
 

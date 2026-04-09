@@ -26,19 +26,19 @@ const Process = () => {
   return (
     <div className='process container'>
       <div className='process__header'>
-        <p className='section-kicker'>Process</p>
-        <h2 className='section-title'>A simple framework for high-quality delivery</h2>
+        <p className='eyebrow'>Process</p>
+        <h2 className='sectionTitle'>A calm, structured way we ship.</h2>
       </div>
 
       <div className='process__list'>
         {steps.map((step, index) => (
           <motion.article
-            className='process__item surface'
+            className='process__item panel'
             key={step.id}
-            initial={{ opacity: 0, x: -14 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.4, delay: index * 0.1 }}
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{ duration: 0.45, delay: index * 0.1 }}
           >
             <span className='process__id'>{step.id}</span>
             <div>

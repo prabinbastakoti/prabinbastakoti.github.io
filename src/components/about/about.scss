@@ -1,47 +1,71 @@
 .about {
   display: grid;
-  gap: 1.2rem;
+  gap: 2rem;
 }
 
-.about__intro,
-.about__facts,
-.about__skills {
-  padding: 1.55rem;
-}
+.about__intro {
+  max-width: 76ch;
 
-.about__intro p {
-  color: var(--text-muted);
-  margin-top: 0.95rem;
-  max-width: 66ch;
+  p {
+    color: var(--muted);
+    margin-top: 1rem;
+  }
 }
 
 .about__details {
   display: grid;
-  gap: 1.2rem;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
 }
 
-.about__facts h3,
-.about__skills h3 {
-  font-size: 1.05rem;
-  margin-bottom: 0.7rem;
-}
-
-.about__facts ul {
-  color: var(--text-muted);
+.about__grid {
   display: grid;
-  gap: 0.55rem;
-  padding-left: 1rem;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.about__card {
+  padding: 1.5rem 1.35rem;
+
+  h3 {
+    font-family: var(--font-display);
+    font-size: 1.27rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-top: 0.65rem;
+  }
+}
+
+.about__stack {
+  padding: 1.5rem 1.35rem;
+
+  h3 {
+    font-size: 1.02rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
 }
 
 .about__chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.58rem;
+  margin-top: 0.9rem;
 }
 
-@media (max-width: 840px) {
-  .about__details {
+@media (max-width: 980px) {
+  .about__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .about__grid {
     grid-template-columns: 1fr;
   }
 }

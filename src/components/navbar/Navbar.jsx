@@ -1,5 +1,10 @@
 import { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import {
+  AnimatePresence,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+} from 'framer-motion';
 import './navbar.scss';
 
 const links = [
@@ -14,6 +19,12 @@ const links = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isElevated, setIsElevated] = useState(false);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    setIsElevated(latest > 40);
+  });
 
   const closeMenu = () => {
     setIsOpen(false);
@@ -21,15 +32,14 @@ const Navbar = () => {
 
   return (
     <motion.header
-      className='navbar'
+      className={`navbar ${isElevated ? 'isElevated' : ''}`}
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
     >
       <div className='container navbar__inner'>
         <a href='#home' className='navbar__brand'>
-          <span>PRABIN</span>
-          <span>BASTAKOTI</span>
+          <strong>Prabin Bastakoti</strong>
         </a>
 
         <nav className='navbar__desktop' aria-label='Primary'>
@@ -42,7 +52,7 @@ const Navbar = () => {
 
         <div className='navbar__actions'>
           <a
-            className='btn btn--outline navbar__resume'
+            className='btn btn--ghost navbar__resume'
             href='/prabinbastakoti.pdf'
             target='_blank'
             rel='noreferrer'
@@ -54,8 +64,8 @@ const Navbar = () => {
             aria-label='Toggle menu'
             onClick={() => setIsOpen((prev) => !prev)}
           >
-            <span></span>
-            <span></span>
+            <span className={isOpen ? 'line line--one open' : 'line line--one'}></span>
+            <span className={isOpen ? 'line line--two open' : 'line line--two'}></span>
           </button>
         </div>
       </div>
@@ -64,10 +74,10 @@ const Navbar = () => {
         {isOpen && (
           <motion.nav
             className='navbar__mobile'
-            initial={{ opacity: 0, y: -16 }}
+            initial={{ opacity: 0, y: -14 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.25 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.22 }}
             aria-label='Mobile'
           >
             {links.map((link) => (

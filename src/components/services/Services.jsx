@@ -8,7 +8,7 @@ const services = [
       'High-converting websites with intentional design systems, strong performance, and mobile-first execution.',
   },
   {
-    title: 'Full-Stack Application Development',
+    title: 'Software Application Development',
     description:
       'Robust React and Node.js applications with secure APIs, clean architecture, and long-term maintainability.',
   },
@@ -38,20 +38,27 @@ const Services = () => {
   return (
     <div className='services container'>
       <div className='services__header'>
-        <p className='section-kicker'>Services</p>
-        <h2 className='section-title'>What I can build for you</h2>
+        <p className='eyebrow'>Services</p>
+        <h2 className='sectionTitle'>Built for outcomes, not just features.</h2>
+        <p className='sectionLead'>
+          End-to-end product work from design systems to modern software builds,
+          with a focus on quality, clarity, and measurable business impact.
+        </p>
       </div>
 
       <div className='services__grid'>
         {services.map((service, index) => (
           <motion.article
-            className='services__card surface'
+            className='services__card panel'
             key={service.title}
-            initial={{ opacity: 0, y: 18 }}
+            initial={{ opacity: 0, y: 22 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
-            transition={{ duration: 0.4, delay: index * 0.06 }}
+            transition={{ duration: 0.45, delay: index * 0.07 }}
           >
+            <span className='services__index'>
+              {String(index + 1).padStart(2, '0')}
+            </span>
             <h3>{service.title}</h3>
             <p>{service.description}</p>
           </motion.article>

@@ -1,3 +1,4 @@
+import { motion, useScroll, useTransform } from 'framer-motion';
 import './app.scss';
 import Navbar from './components/navbar/Navbar';
 import Hero from './components/hero/Hero';
@@ -9,10 +10,17 @@ import Portfolio from './components/portfolio/Portfolio';
 import Contact from './components/contact/Contact';
 
 const App = () => {
+  const { scrollY, scrollYProgress } = useScroll();
+  const glowTopY = useTransform(scrollY, [0, 1500], [0, -280]);
+  const glowBottomY = useTransform(scrollY, [0, 1500], [0, -130]);
+  const gridY = useTransform(scrollY, [0, 1500], [0, -70]);
+
   return (
     <div className='app'>
-      <div className='ambient ambient--one'></div>
-      <div className='ambient ambient--two'></div>
+      <motion.div className='scrollProgress' style={{ scaleX: scrollYProgress }} />
+      <motion.div className='bgGlow bgGlow--top' style={{ y: glowTopY }} />
+      <motion.div className='bgGlow bgGlow--bottom' style={{ y: glowBottomY }} />
+      <motion.div className='bgGrid' style={{ y: gridY }} />
       <Navbar />
 
       <main>
