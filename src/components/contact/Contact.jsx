@@ -1,13 +1,13 @@
-import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
-import "./contact.scss";
+import { useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
+import './contact.scss';
 
 const MESSAGE_DISMISS_SECONDS = 10;
 
 const Contact = () => {
   const formRef = useRef();
-  const [state, setState] = useState({ type: "", message: "", sending: false });
+  const [state, setState] = useState({ type: '', message: '', sending: false });
   const [secondsLeft, setSecondsLeft] = useState(MESSAGE_DISMISS_SECONDS);
   const [isMessageVisible, setIsMessageVisible] = useState(false);
   const [introLockHeight, setIntroLockHeight] = useState(0);
@@ -68,10 +68,10 @@ const Contact = () => {
     };
 
     updateIntroLockHeight();
-    window.addEventListener("resize", updateIntroLockHeight);
+    window.addEventListener('resize', updateIntroLockHeight);
 
     return () => {
-      window.removeEventListener("resize", updateIntroLockHeight);
+      window.removeEventListener('resize', updateIntroLockHeight);
     };
   }, [state.message, state.sending]);
 
@@ -80,49 +80,51 @@ const Contact = () => {
     clearMessageTimers();
     setIsMessageVisible(false);
     setSecondsLeft(MESSAGE_DISMISS_SECONDS);
-    setState({ type: "", message: "", sending: true });
+    setState({ type: '', message: '', sending: true });
 
     try {
       await emailjs.sendForm(
-        "service_g0mueah",
-        "template_hzeh0x1",
+        'service_g0mueah',
+        'template_hzeh0x1',
         formRef.current,
-        "Mw9UkDsQIzGw09274",
+        'Mw9UkDsQIzGw09274',
       );
 
       showStatusMessage(
-        "success",
-        "Message received. I will get back to you shortly.",
+        'success',
+        'Message received. I will get back to you shortly.',
       );
       formRef.current.reset();
     } catch (error) {
       showStatusMessage(
-        "error",
-        "Something went wrong while sending. Please try again.",
+        'error',
+        'Something went wrong while sending. Please try again.',
       );
     }
   };
 
   const handleMessageExitComplete = () => {
     if (state.message) {
-      setState((previous) => ({ ...previous, type: "", message: "" }));
+      setState((previous) => ({ ...previous, type: '', message: '' }));
     }
   };
 
   const shouldLockIntroHeight = Boolean(state.message) && introLockHeight > 0;
 
   return (
-    <div className='contact container'>
+    <div className="contact container">
       <motion.div
-        className='contact__intro panel'
-        style={shouldLockIntroHeight ? { height: `${introLockHeight}px` } : undefined}
+        className="contact__intro panel"
+        style={
+          shouldLockIntroHeight ? { height: `${introLockHeight}px` } : undefined
+        }
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.35 }}
         transition={{ duration: 0.45 }}
       >
-        <p className='eyebrow'>Contact</p>
-        <h2 className='sectionTitle'>
+        <p className="eyebrow">Contact</p>
+        <h2 className="sectionTitle">
           Let&apos;s craft your next digital product.
         </h2>
         <p>
@@ -130,14 +132,10 @@ const Contact = () => {
           business day with a clear next step.
         </p>
 
-        <div className='contact__info'>
+        <div className="contact__info">
           <p>
             <strong>Email</strong>
             <span>info@prabinbastakoti.com.np</span>
-          </p>
-          <p>
-            <strong>Phone</strong>
-            <span>+977 9809224210</span>
           </p>
           <p>
             <strong>Location</strong>
@@ -147,7 +145,7 @@ const Contact = () => {
       </motion.div>
 
       <motion.form
-        className='contact__form panel'
+        className="contact__form panel"
         ref={formRef}
         onSubmit={sendEmail}
         initial={{ opacity: 0, y: 20 }}
@@ -155,39 +153,39 @@ const Contact = () => {
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.45, delay: 0.12 }}
       >
-        <label htmlFor='name'>Name</label>
+        <label htmlFor="name">Name</label>
         <input
-          id='name'
-          type='text'
+          id="name"
+          type="text"
           required
-          name='name'
-          placeholder='Your name'
+          name="name"
+          placeholder="Your name"
         />
 
-        <label htmlFor='email'>Email</label>
+        <label htmlFor="email">Email</label>
         <input
-          id='email'
-          type='email'
+          id="email"
+          type="email"
           required
-          name='email'
-          placeholder='Your email'
+          name="email"
+          placeholder="Your email"
         />
 
-        <label htmlFor='message'>Message</label>
+        <label htmlFor="message">Message</label>
         <textarea
-          id='message'
+          id="message"
           rows={6}
-          name='message'
+          name="message"
           required
-          placeholder='Tell me a little about your project, expected timeline, and goals'
+          placeholder="Tell me a little about your project, expected timeline, and goals"
         />
 
         <button
-          className='btn btn--primary'
-          type='submit'
+          className="btn btn--primary"
+          type="submit"
           disabled={state.sending}
         >
-          {state.sending ? "Sending..." : "Send Message"}
+          {state.sending ? 'Sending...' : 'Send Message'}
         </button>
 
         <AnimatePresence onExitComplete={handleMessageExitComplete}>
@@ -197,10 +195,10 @@ const Contact = () => {
               initial={{ opacity: 0, x: 18 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -36 }}
-              transition={{ duration: 0.32, ease: "easeOut" }}
+              transition={{ duration: 0.32, ease: 'easeOut' }}
             >
               <span>{state.message}</span>
-              <span className='contact__messageTimer'>{secondsLeft}s</span>
+              <span className="contact__messageTimer">{secondsLeft}s</span>
             </motion.p>
           )}
         </AnimatePresence>
