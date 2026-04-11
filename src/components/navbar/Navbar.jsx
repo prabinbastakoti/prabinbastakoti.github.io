@@ -100,7 +100,6 @@ const Navbar = () => {
       transition={{ duration: 0.4 }}
     >
       <nav className='navbar__desktopRail' aria-label='Primary'>
-        <p className='navbar__desktopHeading'>Navigate</p>
         <div className='navbar__desktopTrack'>
           {links.map((link) => (
             <a
@@ -117,7 +116,6 @@ const Navbar = () => {
                   transition={{ type: 'spring', stiffness: 340, damping: 28 }}
                 />
               )}
-              <span className='navbar__desktopDot' aria-hidden='true'></span>
               <span className='navbar__desktopText'>{link.label}</span>
             </a>
           ))}
