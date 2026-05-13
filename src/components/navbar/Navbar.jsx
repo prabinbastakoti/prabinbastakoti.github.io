@@ -100,13 +100,14 @@ const Navbar = () => {
   };
 
   return (
-    <motion.header
-      className='navbar'
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.4 }}
-    >
-      <nav className={`navbar__desktopRail${scrolled ? ' isScrolled' : ''}`} aria-label='Primary'>
+    <header className='navbar'>
+      <motion.nav
+        className={`navbar__desktopRail${scrolled ? ' isScrolled' : ''}`}
+        aria-label='Primary'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4 }}
+      >
         <div className='navbar__desktopTrack'>
           {links.map((link) => (
             <a
@@ -127,7 +128,7 @@ const Navbar = () => {
             </a>
           ))}
         </div>
-      </nav>
+      </motion.nav>
 
       <button
         className='navbar__menuButton'
@@ -184,7 +185,7 @@ const Navbar = () => {
           </motion.nav>
         )}
       </AnimatePresence>
-    </motion.header>
+    </header>
   );
 };
 
