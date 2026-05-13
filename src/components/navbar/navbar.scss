@@ -1,14 +1,3 @@
-@keyframes slideInGlass {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 .navbar {
   --mobile-toggle-size: 2.7rem;
   --mobile-toggle-top: 0.58rem;
@@ -29,14 +18,12 @@
     transform: translateX(-50%);
     width: max-content;
     z-index: 21;
-    transition: background 0.3s ease, backdrop-filter 0.3s ease, padding 0.3s ease, border-radius 0.3s ease, box-shadow 0.3s ease;
+    transition: background 0.3s ease, padding 0.3s ease, border-radius 0.3s ease, box-shadow 0.3s ease;
 
     &.isScrolled {
-      backdrop-filter: blur(18px) saturate(160%);
-      -webkit-backdrop-filter: blur(18px) saturate(160%);
-      background: rgba(240, 246, 252, 0.82);
+      background: #f0f6fc;
       border-radius: 999px;
-      box-shadow: 0 4px 24px rgba(10, 20, 38, 0.10);
+      box-shadow: 0 2px 12px rgba(10, 20, 38, 0.08);
       padding: 0.45rem 0.6rem;
     }
   }
@@ -97,12 +84,10 @@
 
   &__menuButton {
     align-items: center;
-    backdrop-filter: blur(12px) saturate(150%);
-    -webkit-backdrop-filter: blur(12px) saturate(150%);
-    background: rgba(255, 255, 255, 0.48);
-    border: 1px solid rgba(255, 255, 255, 0.56);
+    background: #f0f6fc;
+    border: 1px solid rgba(10, 20, 38, 0.12);
     border-radius: 999px;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65), 0 8px 16px rgba(13, 22, 35, 0.09);
+    box-shadow: 0 2px 8px rgba(13, 22, 35, 0.08);
     cursor: pointer;
     display: none;
     height: var(--mobile-toggle-size);
@@ -142,11 +127,7 @@
 
   &__mobile {
     align-items: flex-start;
-    animation: slideInGlass 0.22s ease;
-    backdrop-filter: blur(26px) saturate(185%);
-    -webkit-backdrop-filter: blur(26px) saturate(185%);
     background-color: #eef4fb;
-    background-image: linear-gradient(145deg, rgba(244, 248, 253, 0.98), rgba(236, 243, 251, 0.98));
     display: flex;
     flex-direction: column;
     gap: 0;
@@ -172,12 +153,10 @@
 
     .navbar__mobileClose {
       align-items: center;
-      backdrop-filter: blur(12px) saturate(150%);
-      -webkit-backdrop-filter: blur(12px) saturate(150%);
-      background: rgba(255, 255, 255, 0.48);
-      border: 1px solid rgba(255, 255, 255, 0.56);
+      background: #f0f6fc;
+      border: 1px solid rgba(10, 20, 38, 0.12);
       border-radius: 999px;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65), 0 8px 16px rgba(13, 22, 35, 0.09);
+      box-shadow: 0 2px 8px rgba(13, 22, 35, 0.08);
       cursor: pointer;
       display: inline-flex;
       height: var(--mobile-toggle-size);
