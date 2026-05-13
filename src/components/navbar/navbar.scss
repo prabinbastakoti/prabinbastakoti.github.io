@@ -10,7 +10,6 @@
 }
 
 .navbar {
-  --desktop-nav-top: 0.95rem;
   --mobile-toggle-size: 2.7rem;
   --mobile-toggle-top: 0.58rem;
   --mobile-toggle-right: 0.8rem;
@@ -21,37 +20,24 @@
 
   &__desktopRail {
     align-items: center;
-    backdrop-filter: blur(20px) saturate(170%);
-    -webkit-backdrop-filter: blur(20px) saturate(170%);
-    background-color: #e7eef7;
-    background-image: linear-gradient(165deg, #f2f7fc 0%, #e8f0f8 45%, #dfe8f3 100%);
-    border: none;
-    border-radius: 999px;
-    box-shadow: 0 20px 40px rgba(10, 19, 32, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.45);
     display: flex;
-    flex-direction: row;
-    gap: 0;
     left: 50%;
-    padding: 0.55rem 0.72rem;
+    padding: 1.4rem 0;
     pointer-events: auto;
     position: fixed;
-    top: var(--desktop-nav-top);
+    top: 0;
     transform: translateX(-50%);
-    width: min(70rem, calc(100vw - 2.8rem));
+    width: max-content;
     z-index: 21;
-    overflow: hidden;
+    transition: background 0.3s ease, backdrop-filter 0.3s ease, padding 0.3s ease, border-radius 0.3s ease, box-shadow 0.3s ease;
 
-    &::before {
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.42),
-        rgba(255, 255, 255, 0.14) 38%,
-        rgba(255, 255, 255, 0)
-      );
-      content: '';
-      inset: 0;
-      pointer-events: none;
-      position: absolute;
+    &.isScrolled {
+      backdrop-filter: blur(18px) saturate(160%);
+      -webkit-backdrop-filter: blur(18px) saturate(160%);
+      background: rgba(240, 246, 252, 0.82);
+      border-radius: 999px;
+      box-shadow: 0 4px 24px rgba(10, 20, 38, 0.10);
+      padding: 0.45rem 0.6rem;
     }
   }
 
@@ -59,60 +45,54 @@
     align-items: center;
     display: flex;
     flex-direction: row;
-    gap: 0.56rem;
+    gap: 0.6rem;
     justify-content: center;
     position: relative;
-    width: 100%;
     z-index: 1;
   }
 
   &__desktopLink {
     align-items: center;
     border: none;
-    border-radius: 14px;
-    color: #2b3546;
+    color: rgba(18, 28, 46, 0.65);
     display: flex;
-    font-size: 0.82rem;
-    font-weight: 700;
-    justify-content: flex-start;
-    letter-spacing: 0.02em;
-    min-height: 2.4rem;
-    padding: 0.42rem 1.04rem;
-    transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
-    width: auto;
-    white-space: nowrap;
+    font-size: 0.875rem;
+    font-weight: 600;
+    justify-content: center;
+    letter-spacing: 0.05em;
+    padding: 0.35rem 1rem;
     position: relative;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+    white-space: nowrap;
     z-index: 1;
 
     &:hover {
-      background: rgba(236, 242, 249, 0.75);
-      color: #1a4f78;
-      transform: translateY(-1px);
+      color: #0f2440;
     }
   }
 
   &__desktopActiveGlow {
-    backdrop-filter: blur(8px);
-    background: linear-gradient(140deg, #113353, #2a6a99);
-    border: none;
+    background: #1a3352;
     border-radius: 999px;
-    box-shadow: 0 10px 20px rgba(13, 37, 61, 0.25);
-    inset: 0;
+    bottom: -2px;
+    height: 3px;
+    left: 50%;
     position: absolute;
+    transform: translateX(-50%);
+    width: 16px;
     z-index: 0;
   }
 
   &__desktopText {
     white-space: nowrap;
+    position: relative;
+    z-index: 1;
   }
 
   &__desktopLink.isActive {
-    color: #edf8ff;
-  }
-
-  &__desktopLink.isActive .navbar__desktopText {
-    position: relative;
-    z-index: 1;
+    color: #0f2440;
+    font-weight: 700;
   }
 
   &__menuButton {
@@ -223,18 +203,6 @@
       .line--two {
         transform: rotate(-45deg);
       }
-    }
-  }
-
-  @supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
-    &__desktopRail {
-      background-color: #e8eff8;
-      background-image: linear-gradient(165deg, #f4f8fd, #e4edf7);
-    }
-
-    &__mobile {
-      background-color: #edf3fa;
-      background-image: linear-gradient(145deg, #f3f7fc, #e9f0f8);
     }
   }
 

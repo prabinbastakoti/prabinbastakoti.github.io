@@ -34,6 +34,13 @@ const menuItemVariants = {
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeHref, setActiveHref] = useState('#home');
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
     if (!isOpen) {
@@ -99,7 +106,7 @@ const Navbar = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4 }}
     >
-      <nav className='navbar__desktopRail' aria-label='Primary'>
+      <nav className={`navbar__desktopRail${scrolled ? ' isScrolled' : ''}`} aria-label='Primary'>
         <div className='navbar__desktopTrack'>
           {links.map((link) => (
             <a
